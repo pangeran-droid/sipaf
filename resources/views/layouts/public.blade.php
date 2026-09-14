@@ -1,99 +1,73 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Sistem Informasi Pengaduan Akademik Fakultas' }}</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        main {
-            flex: 1;
-        }
-        .kanban-col {
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
-            padding: 20px;
-            height: 100%;
-            transition: transform 0.2s ease;
-        }
-        .navbar-brand {
-            letter-spacing: 0.5px;
-        }
-        .card {
-            border-radius: 10px;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>{{ isset($title) ? $title . ' - ' : '' }}{{ config('app.name') }}</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <!-- Favicons -->
+  <link href="{{ asset('templates/frontend/assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('templates/frontend/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('templates/frontend/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('templates/frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('templates/frontend/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('templates/frontend/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('templates/frontend/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{{ asset('templates/frontend/assets/css/main.css') }}" rel="stylesheet">
+
+  @yield('styles')
+
+  <!-- =======================================================
+  * Template Name: QuickStart
+  * Template URL: https://bootstrapmade.com/quickstart-bootstrap-startup-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
-<body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ route('home') }}">
-                <i class="bi bi-megaphone-fill me-2"></i>SIPAF Fakultas
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link px-3 {{ request()->routeIs('home') ? 'active fw-bold' : '' }}" href="{{ route('home') }}">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 {{ request()->routeIs('pengaduan.create') ? 'active fw-bold' : '' }}" href="{{ route('pengaduan.create') }}">Buat Pengaduan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 {{ request()->routeIs('pengaduan.antrian') ? 'active fw-bold' : '' }}" href="{{ route('pengaduan.antrian') }}">Antrian Pengaduan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 {{ request()->routeIs('tentang') ? 'active fw-bold' : '' }}" href="{{ route('tentang') }}">Tentang Sistem</a>
-                    </li>
-                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        @auth
-                            <a href="{{ route('admin.dashboard') }}" class="btn btn-light btn-sm text-primary fw-bold px-3 py-2 shadow-sm">Dashboard Admin</a>
-                        @else
-                            <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm px-3 py-2">Login Admin</a>
-                        @endauth
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body class="starter-page-page">
 
-    <!-- Main Content -->
-    <main class="py-5">
-        <div class="container">
-            @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show shadow-sm border-0" role="alert">
-                    <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
+  @include('public.components.navbar')
 
-            @yield('content')
-        </div>
+    <main class="main">
+        @yield('content')
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-auto shadow-sm">
-        <div class="container">
-            <p class="mb-0 text-white-50 small">&copy; {{ date('Y') }} Sistem Informasi Pengaduan Akademik Fakultas. Hak Cipta Dilindungi.</p>
-        </div>
-    </footer>
+  @include('public.components.footer')
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ asset('templates/frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('templates/frontend/assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ asset('templates/frontend/assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('templates/frontend/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('templates/frontend/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+  <!-- Main JS File -->
+  <script src="{{ asset('templates/frontend/assets/js/main.js') }}"></script>
+
+  @yield('scripts')
+
 </body>
+
 </html>

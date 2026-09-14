@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
             // Statistik per Jurusan
             $jurusans = Jurusan::withCount('pengaduans')->get();
-            
+
             // Pengaduan Terbaru
             $pengaduanTerbaru = Pengaduan::with('jurusan')->latest()->take(5)->get();
 
@@ -35,6 +35,8 @@ class DashboardController extends Controller
                     ->count();
             }
 
+            // $title = 'Admin Dashboard';
+
             return view('admin.dashboard', compact(
                 'totalPengaduan',
                 'proses',
@@ -42,7 +44,8 @@ class DashboardController extends Controller
                 'selesai',
                 'jurusans',
                 'pengaduanTerbaru',
-                'pengaduanPerBulan'
+                'pengaduanPerBulan',
+                // 'title',
             ));
         } else {
             // Statistik Khusus Admin Jurusan (Akan disempurnakan di Step 9)
