@@ -1,7 +1,7 @@
   <nav class="pc-sidebar">
     <div class="navbar-wrapper">
       <div class="m-header flex items-center py-4 px-6 h-header-height">
-        <a href="#" class="b-brand flex items-center gap-3">
+        <a href="{{ route('admin.dashboard') }}" class="b-brand flex items-center gap-3">
           <!-- ========   Change your logo from here   ============ -->
           <img src="{{ asset('templates/backend/images/logo-dark.svg') }}" class="img-fluid logo-lg" alt="logo" />
           <span class="badge bg-success-500/10 text-success-500 rounded-full theme-version">v1.0.0</span>
@@ -28,26 +28,23 @@
                   <i class="text-lg leading-none ti ti-user"></i>
                   <span data-i18n="My Account">My Account</span>
                 </a>
-                <form action="{{ route('logout') }}" method="POST">
+                <form action="{{ route('logout') }}" method="POST" id="logout-form" class="hidden">
                     @csrf
-
-                    <x-dropdown-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                            this.closest('form').submit();">
-                        <i class="text-lg leading-none ti ti-power"></i>
-                        {{ __('Log Out') }}
-                    </x-dropdown-link>
                 </form>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="text-lg leading-none ti ti-power"></i>
+                    <span>{{ __('Log Out') }}</span>
+                </a>
               </div>
             </div>
           </div>
         </div>
         <ul class="pc-navbar">
           <li class="pc-item pc-caption">
-            <label>Navigation</label>
+            <label>Utama</label>
           </li>
           <li class="pc-item">
-            <a href="../dashboard/index.html" class="pc-link">
+            <a href="{{ route('admin.dashboard') }}" class="pc-link">
               <span class="pc-micon">
                 <svg class="pc-icon">
                   <use xlink:href="#custom-status-up"></use>
@@ -56,17 +53,49 @@
               <span class="pc-mtext">Dashboard</span>
             </a>
           </li>
+          <li class="pc-item">
+            <a href="{{ route('admin.pengaduan.index') }}" class="pc-link"><span class="pc-micon">
+                <svg class="pc-icon">
+                  <use xlink:href="#custom-notification-status"></use>
+                </svg> </span><span class="pc-mtext">Daftar Pengaduan</span></a>
+          </li>
           <li class="pc-item pc-caption">
-            <label>Authentication</label>
+            <label>Asisten</label>
           </li>
           <li class="pc-item">
-            <a href="../pages/login-v1.html" class="pc-link" target="_blank"><span class="pc-micon">
+            <a href="#" class="pc-link">
+              <span class="pc-micon">
                 <svg class="pc-icon">
-                  <use xlink:href="#custom-shield"></use>
-                </svg> </span><span class="pc-mtext">Login</span></a>
+                  <use xlink:href="#custom-mouse-circle"></use>
+                </svg>
+              </span>
+              <span class="pc-mtext">Ai Asisten</span>
+              <span class="badge bg-success-500/10 text-success-500 rounded-full theme-version">new</span>
+            </a>
+          </li>
+          <li class="pc-item pc-caption">
+            <label>Manajemen</label>
+          </li>
+          <li class="pc-item">
+            <a href="{{ route('admin.laporan.index') }}" class="pc-link"><span class="pc-micon">
+                <svg class="pc-icon">
+                  <use xlink:href="#custom-document-filter"></use>
+                </svg> </span><span class="pc-mtext">Laporan Pengaduan</span></a>
+          </li>
+          <li class="pc-item">
+            <a href="{{ route('admin.jurusan.index') }}" class="pc-link"><span class="pc-micon">
+                <svg class="pc-icon">
+                  <use xlink:href="#custom-layer"></use>
+                </svg> </span><span class="pc-mtext">Jurusan</span></a>
+          </li>
+          <li class="pc-item">
+            <a href="{{ route('admin.manajemen-admin.index') }}" class="pc-link"><span class="pc-micon">
+                <svg class="pc-icon">
+                  <use xlink:href="#custom-user"></use>
+                </svg> </span><span class="pc-mtext">Admin</span></a>
           </li>
 
-          <li class="pc-item pc-caption">
+          {{-- <li class="pc-item pc-caption">
             <label>Other</label>
             <svg class="pc-icon">
               <use xlink:href="#custom-notification-status"></use>
@@ -97,7 +126,7 @@
               </span>
               <span class="pc-mtext">Sample page</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </div>
     </div>

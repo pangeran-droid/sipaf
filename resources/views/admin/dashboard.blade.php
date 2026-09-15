@@ -1,179 +1,638 @@
-@extends('layouts.admin', ['title' => 'Dashboard - SIPAF Admin'])
+@extends('layouts.admin')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2 fw-bold">Dashboard {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin ' . auth()->user()->jurusan->nama_jurusan }}</h1>
-    <span class="text-muted">Selamat datang kembali, {{ auth()->user()->name }}!</span>
-</div>
 
-<!-- Statistik Cards -->
-<div class="row g-4 mb-4">
-    <div class="col-xl-3 col-md-6">
-        <div class="card border-0 shadow-sm bg-primary text-white h-100">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-uppercase fw-semibold mb-1">Total Pengaduan</h6>
-                        <h2 class="display-6 fw-bold mb-0">{{ $totalPengaduan }}</h2>
-                    </div>
-                    <div class="fs-1 text-white-50"><i class="bi bi-chat-square-text"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card border-0 shadow-sm bg-info text-white h-100">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-uppercase fw-semibold mb-1">Proses</h6>
-                        <h2 class="display-6 fw-bold mb-0">{{ $proses }}</h2>
-                    </div>
-                    <div class="fs-1 text-white-50"><i class="bi bi-hourglass-split"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card border-0 shadow-sm bg-warning text-dark h-100">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-uppercase fw-semibold mb-1">Sedang Ditangani</h6>
-                        <h2 class="display-6 fw-bold mb-0">{{ $sedangDitangani }}</h2>
-                    </div>
-                    <div class="fs-1 text-dark opacity-50"><i class="bi bi-gear-fill"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card border-0 shadow-sm bg-success text-white h-100">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-uppercase fw-semibold mb-1">Selesai</h6>
-                        <h2 class="display-6 fw-bold mb-0">{{ $selesai }}</h2>
-                    </div>
-                    <div class="fs-1 text-white-50"><i class="bi bi-check-circle-fill"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <!-- Header dashboard -->
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h2 class="text-xl font-semibold mb-1">
+                Dashboard
+            </h2>
 
-@if(auth()->user()->role === 'super_admin')
-<!-- Grafik & Statistik Jurusan (Super Admin Only) -->
-<div class="row g-4 mb-4">
-    <div class="col-lg-8">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-header bg-white py-3">
-                <h5 class="card-title fw-bold mb-0"><i class="bi bi-bar-chart-line me-2"></i>Grafik Pengaduan Per Bulan ({{ date('Y') }})</h5>
-            </div>
-            <div class="card-body">
-                <canvas id="chartPengaduan" height="120"></canvas>
-            </div>
+            <p class="text-muted mb-0">
+                Ringkasan pengaduan tahun {{ $tahunIni }}
+            </p>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-header bg-white py-3">
-                <h5 class="card-title fw-bold mb-0"><i class="bi bi-pie-chart me-2"></i>Pengaduan Berdasarkan Jurusan</h5>
-            </div>
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    @foreach($jurusans as $jurusan)
-                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                            {{ $jurusan->nama_jurusan }}
-                            <span class="badge bg-primary rounded-pill">{{ $jurusan->pengaduans_count }}</span>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
 
-<!-- Pengaduan Terbaru -->
-<div class="card border-0 shadow-sm mb-4">
-    <div class="card-header bg-white py-3">
-        <h5 class="card-title fw-bold mb-0"><i class="bi bi-clock-history me-2"></i>Pengaduan Terbaru</h5>
+    <!-- Info user -->
+    <div class="grid grid-cols-12 gap-x-6 mt-5" id="welcome-card-wrapper">
+
+        <div class="col-span-12">
+            <div class="card">
+
+                <div class="card-body">
+
+                    <div class="flex items-center">
+
+                        <!-- Icon -->
+                        <div class="shrink-0">
+                            <div class="w-12 h-12 rounded-xl inline-flex items-center justify-center bg-primary-500/10 text-primary-500">
+                                <i class="ti ti-user text-2xl"></i>
+                            </div>
+                        </div>
+
+
+                        <!-- User Information -->
+                        <div class="grow ltr:ml-4 rtl:mr-4">
+
+                            <h5 class="mb-1">
+                                Selamat datang, {{ auth()->user()->name }}
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                Anda login sebagai
+                                <strong>
+                                    @if(auth()->user()->role === 'super_admin')
+                                        Super Admin
+                                    @else
+                                        Admin Jurusan
+                                    @endif
+                                </strong>.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Close Button -->
+                        <div class="shrink-0 self-start">
+
+                            <button
+                                type="button"
+                                id="close-welcome-card"
+                                class="w-8 h-8 rounded-xl inline-flex items-center justify-center btn-link-secondary hover:bg-theme-bodybg dark:hover:bg-themedark-bodybg"
+                                aria-label="Tutup"
+                                title="Tutup"
+                            >
+                                <i class="ti ti-x text-lg leading-none"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
     </div>
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th class="py-3 ps-3">Kode</th>
-                        <th class="py-3">Nama Pengadu</th>
-                        <th class="py-3">Jurusan</th>
-                        <th class="py-3">Dosen Terkait</th>
-                        <th class="py-3">Status</th>
-                        <th class="py-3 pe-3">Tanggal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($pengaduanTerbaru as $item)
-                        <tr>
-                            <td class="ps-3 fw-bold text-primary">{{ $item->kode_pengaduan }}</td>
-                            <td>{{ $item->nama_pengadu }}</td>
-                            <td>{{ $item->jurusan->nama_jurusan }}</td>
-                            <td>{{ $item->nama_dosen }}</td>
-                            <td>
-                                @if($item->status === 'Proses')
-                                    <span class="badge bg-info text-dark">Proses</span>
-                                @elseif($item->status === 'Sedang Ditangani')
-                                    <span class="badge bg-warning text-dark">Sedang Ditangani</span>
+
+    <!-- Statistik utamam -->
+    <div class="grid grid-cols-12 gap-x-6">
+
+        <!-- Total Pengaduan -->
+        <div class="col-span-12 md:col-span-6 2xl:col-span-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="flex items-center">
+
+                        <div class="shrink-0">
+                            <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-primary-500/10 text-primary-500">
+                                <i class="ti ti-message-report text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="grow ltr:ml-3 rtl:mr-3">
+                            <h6 class="mb-1">Total Pengaduan</h6>
+                            <h4 class="mb-0">{{ number_format($totalPengaduan) }}</h4>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-muted mb-0">
+                            <i class="ti ti-chart-bar"></i>
+                            Seluruh pengaduan
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proses -->
+        <div class="col-span-12 md:col-span-6 2xl:col-span-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="flex items-center">
+
+                        <div class="shrink-0">
+                            <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-warning-500/10 text-warning-500">
+                                <i class="ti ti-clock text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="grow ltr:ml-3 rtl:mr-3">
+                            <h6 class="mb-1">Proses</h6>
+                            <h4 class="mb-0">{{ number_format($proses) }}</h4>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-warning-500 mb-0">
+                            <i class="ti ti-loader"></i>
+                            Sedang diproses
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sedang Ditangani -->
+        <div class="col-span-12 md:col-span-6 2xl:col-span-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="flex items-center">
+
+                        <div class="shrink-0">
+                            <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-info-500/10 text-info-500">
+                                <i class="ti ti-user-search text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="grow ltr:ml-3 rtl:mr-3">
+                            <h6 class="mb-1">Sedang Ditangani</h6>
+                            <h4 class="mb-0">{{ number_format($sedangDitangani) }}</h4>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-info-500 mb-0">
+                            <i class="ti ti-progress"></i>
+                            Dalam penanganan
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selesai -->
+        <div class="col-span-12 md:col-span-6 2xl:col-span-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="flex items-center">
+
+                        <div class="shrink-0">
+                            <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-success-500/10 text-success-500">
+                                <i class="ti ti-circle-check text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="grow ltr:ml-3 rtl:mr-3">
+                            <h6 class="mb-1">Selesai</h6>
+                            <h4 class="mb-0">{{ number_format($selesai) }}</h4>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-success-500 mb-0">
+                            <i class="ti ti-check"></i>
+                            Pengaduan terselesaikan
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grafik pengaduan bulanan -->
+        <div class="col-span-12 lg:col-span-8">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <h5 class="mb-1">Pengaduan Bulanan</h5>
+                            <p class="text-muted mb-0">
+                                Statistik pengaduan tahun {{ $tahunIni }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="pengaduan-bulanan-chart"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Ringkasan status -->
+        <div class="col-span-12 lg:col-span-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h5 class="mb-1">Status Pengaduan</h5>
+                            <p class="text-muted mb-0">Distribusi status</p>
+                        </div>
+                    </div>
+
+                    <div id="status-pengaduan-chart"></div><br>
+
+                    <!-- Status Horizontal -->
+                    <div class="flex items-center justify-between gap-4 mt-4">
+
+                        <!-- Proses -->
+                        <div class="flex-1 text-center">
+                            <div class="flex items-center justify-center gap-2 mb-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-warning-500 inline-block"></span>
+                                <p class="text-muted mb-0 text-sm">Proses</p>
+                            </div>
+                            <h6 class="mb-0">{{ $proses }}</h6>
+                        </div>
+
+                        <!-- Ditangani -->
+                        <div class="flex-1 text-center">
+                            <div class="flex items-center justify-center gap-2 mb-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-info-500 inline-block"></span>
+                                <p class="text-muted mb-0 text-sm">Ditangani</p>
+                            </div>
+                            <h6 class="mb-0">{{ $sedangDitangani }}</h6>
+                        </div>
+
+                        <!-- Selesai -->
+                        <div class="flex-1 text-center">
+                            <div class="flex items-center justify-center gap-2 mb-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-success-500 inline-block"></span>
+                                <p class="text-muted mb-0 text-sm">Selesai</p>
+                            </div>
+                            <h6 class="mb-0">{{ $selesai }}</h6>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Pengaduan terbaru -->
+        <div class="col-span-12 lg:col-span-6">
+            <div class="card">
+
+                <div class="card-header">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h5 class="mb-1">Pengaduan Terbaru</h5>
+                            <p class="text-muted mb-0">
+                                5 pengaduan terakhir
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-0">
+
+                    @forelse($pengaduanTerbaru as $pengaduan)
+
+                        <div class="flex items-center px-5 py-4 border-b border-theme-border dark:border-themedark-border">
+
+                            <div class="shrink-0">
+                                <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-primary-500/10 text-primary-500">
+                                    <i class="ti ti-message text-xl"></i>
+                                </div>
+                            </div>
+
+                            <div class="grow ltr:ml-3 rtl:mr-3 min-w-0">
+
+                                <h6 class="mb-1 truncate">
+                                    {{ $pengaduan->judul ?? 'Pengaduan' }}
+                                </h6>
+
+                                <p class="text-muted mb-0 text-sm">
+                                    {{ $pengaduan->jurusan->nama_jurusan ?? '-' }}
+                                </p>
+
+                            </div>
+
+                            <div class="shrink-0 text-right">
+
+                                @if($pengaduan->status === 'Proses')
+
+                                    <span class="badge bg-warning-500 text-white">
+                                        Proses
+                                    </span>
+
+                                @elseif($pengaduan->status === 'Sedang Ditangani')
+
+                                    <span class="badge bg-info-500 text-white">
+                                        Ditangani
+                                    </span>
+
+                                @elseif($pengaduan->status === 'Selesai')
+
+                                    <span class="badge bg-success-500 text-white">
+                                        Selesai
+                                    </span>
+
                                 @else
-                                    <span class="badge bg-success">Selesai</span>
+
+                                    <span class="badge bg-secondary-500 text-white">
+                                        {{ $pengaduan->status }}
+                                    </span>
+
                                 @endif
-                            </td>
-                            <td class="pe-3 text-muted small">{{ $item->created_at->format('d M Y, H:i') }}</td>
-                        </tr>
+
+                                <p class="text-muted mb-0 mt-1 text-xs">
+                                    {{ $pengaduan->created_at?->format('d M Y H:i') }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
                     @empty
-                        <tr>
-                            <td colspan="6" class="text-center py-4 text-muted">Belum ada data pengaduan.</td>
-                        </tr>
+
+                        <div class="text-center py-10">
+                            <i class="ti ti-inbox text-4xl text-muted"></i>
+                            <p class="text-muted mt-3 mb-0">
+                                Belum ada pengaduan.
+                            </p>
+                        </div>
+
                     @endforelse
-                </tbody>
-            </table>
+
+                </div>
+
+            </div>
         </div>
+
+        <!-- Statistik per jurusan -->
+        @if(auth()->user()->role === 'super_admin' && isset($jurusans))
+            <div class="col-span-12 lg:col-span-5">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h5 class="mb-1">Pengaduan per Jurusan</h5>
+                        <p class="text-muted mb-0">
+                            Distribusi pengaduan berdasarkan jurusan
+                        </p>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div id="jurusan-pengaduan-chart"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        @endif
+
     </div>
-</div>
+
 @endsection
 
 @push('scripts')
-<!-- Chart.js CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-@if(auth()->user()->role === 'super_admin')
-<script>
-    const ctx = document.getElementById('chartPengaduan').getContext('2d');
-    const chartPengaduan = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'],
-            datasets: [{
-                label: 'Jumlah Pengaduan',
-                data: @json($pengaduanPerBulan),
-                backgroundColor: 'rgba(13, 110, 25, 0.7)',
-                borderColor: 'rgba(13, 110, 253, 1)',
-                borderWidth: 1,
-                borderRadius: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
-                    }
-                }
+
+    <!-- ApexCharts -->
+    <script src="{{ asset('templates/backend/js/plugins/apexcharts.min.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            /* Welcome card */
+            const welcomeCard = document.getElementById('welcome-card-wrapper');
+            const closeButton = document.getElementById('close-welcome-card');
+
+            if (welcomeCard && closeButton) {
+
+                closeButton.addEventListener('click', function () {
+                    welcomeCard.style.display = 'none';
+                });
+
             }
-        }
-    });
-</script>
-@endif
+
+            /* Data dari controller */
+            const chartPengaduan = @json($chartPengaduan);
+
+            const totalPengaduan = {{ $totalPengaduan }};
+            const proses = {{ $proses }};
+            const sedangDitangani = {{ $sedangDitangani }};
+            const selesai = {{ $selesai }};
+
+
+            /* Chart pengaduan bulanan */
+            const monthlyElement = document.querySelector(
+                '#pengaduan-bulanan-chart'
+            );
+
+            if (monthlyElement) {
+
+                const monthlyChart = new ApexCharts(
+                    monthlyElement,
+                    {
+                        chart: {
+                            type: 'area',
+                            height: 330,
+                            toolbar: {
+                                show: false
+                            }
+                        },
+
+                        colors: ['#4680FF'],
+
+                        stroke: {
+                            curve: 'smooth',
+                            width: 3
+                        },
+
+                        fill: {
+                            type: 'gradient',
+                            gradient: {
+                                shadeIntensity: 1,
+                                opacityFrom: 0.35,
+                                opacityTo: 0.05,
+                                stops: [0, 100]
+                            }
+                        },
+
+                        series: [
+                            {
+                                name: 'Pengaduan',
+                                data: chartPengaduan.data
+                            }
+                        ],
+
+                        xaxis: {
+                            categories: chartPengaduan.labels
+                        },
+
+                        yaxis: {
+                            min: 0,
+                            forceNiceScale: true,
+                            labels: {
+                                formatter: function (value) {
+                                    return Math.round(value);
+                                }
+                            }
+                        },
+
+                        dataLabels: {
+                            enabled: false
+                        },
+
+                        grid: {
+                            borderColor: '#e5e7eb',
+                            strokeDashArray: 4
+                        },
+
+                        tooltip: {
+                            y: {
+                                formatter: function (value) {
+                                    return value + ' pengaduan';
+                                }
+                            }
+                        }
+                    }
+                );
+
+                monthlyChart.render();
+            }
+
+
+            /* Chart status pengaduan */
+            const statusElement = document.querySelector(
+                '#status-pengaduan-chart'
+            );
+
+            if (statusElement) {
+
+                const statusChart = new ApexCharts(
+                    statusElement,
+                    {
+                        chart: {
+                            type: 'donut',
+                            height: 280
+                        },
+
+                        series: [
+                            proses,
+                            sedangDitangani,
+                            selesai
+                        ],
+
+                        labels: [
+                            'Proses',
+                            'Sedang Ditangani',
+                            'Selesai'
+                        ],
+
+                        colors: [
+                            '#E58A00',
+                            '#00A9F4',
+                            '#2ca87f'
+                        ],
+
+                        legend: {
+                            show: false
+                        },
+
+                        dataLabels: {
+                            enabled: true
+                        },
+
+                        plotOptions: {
+                            pie: {
+                                donut: {
+                                    size: '70%',
+                                    labels: {
+                                        show: true,
+
+                                        total: {
+                                            show: true,
+                                            label: 'Total',
+                                            formatter: function () {
+                                                return totalPengaduan;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            y: {
+                                formatter: function (value) {
+                                    return value + ' pengaduan';
+                                }
+                            }
+                        }
+                    }
+                );
+
+                statusChart.render();
+            }
+
+
+            /* Chart per jurusan untuk super admin */
+            const jurusanElement = document.querySelector(
+                '#jurusan-pengaduan-chart'
+            );
+
+            @if(auth()->user()->role === 'super_admin' && isset($chartJurusan))
+
+                if (jurusanElement) {
+
+                    const chartJurusan = @json($chartJurusan);
+
+                    const jurusanChart = new ApexCharts(
+                        jurusanElement,
+                        {
+                            chart: {
+                                type: 'bar',
+                                height: 300,
+                                toolbar: {
+                                    show: false
+                                }
+                            },
+
+                            series: [
+                                {
+                                    name: 'Pengaduan',
+                                    data: chartJurusan.data
+                                }
+                            ],
+
+                            xaxis: {
+                                categories: chartJurusan.labels
+                            },
+
+                            colors: ['#4680FF'],
+
+                            plotOptions: {
+                                bar: {
+                                    borderRadius: 5,
+                                    columnWidth: '45%'
+                                }
+                            },
+
+                            dataLabels: {
+                                enabled: false
+                            },
+
+                            grid: {
+                                borderColor: '#e5e7eb',
+                                strokeDashArray: 4
+                            },
+
+                            tooltip: {
+                                y: {
+                                    formatter: function (value) {
+                                        return value + ' pengaduan';
+                                    }
+                                }
+                            }
+                        }
+                    );
+
+                    jurusanChart.render();
+                }
+
+            @endif
+
+        });
+    </script>
+
 @endpush

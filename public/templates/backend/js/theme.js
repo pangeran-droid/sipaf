@@ -231,7 +231,10 @@ function layout_change(layout) {
   dark_flag = isDark;
 
   // Update the logos to match the selected layout
-  var logoSrc = isDark ? '../assets/images/logo-white.svg' : '../assets/images/logo-dark.svg';
+  var logoSrc = isDark
+        ? '/templates/backend/images/logo-white.svg'
+        : '/templates/backend/images/logo-dark.svg';
+
 
   // Helper function to update a specific element's logo if it exists
   function updateLogo(selector) {

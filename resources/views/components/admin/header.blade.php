@@ -230,12 +230,17 @@
                   </a>
                   <hr class="border-secondary-500/10 my-4" />
                   <div class="grid mb-3">
-                    <button class="btn btn-primary-500 flex items-center justify-center">
-                      <svg class="pc-icon me-2 w-[22px] h-[22px]">
-                        <use xlink:href="#custom-logout-1-outline"></use>
-                      </svg>
-                      Logout
-                    </button>
+                    <form action="{{ route('logout') }}" method="POST" id="logout-form-grid" class="hidden">
+                        @csrf
+                    </form>
+                    <a href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form-grid').submit();"
+                        class="btn btn-primary-500 flex items-center justify-center">
+                        <svg class="pc-icon me-2 w-[22px] h-[22px]">
+                            <use xlink:href="#custom-logout-1-outline"></use>
+                        </svg>
+                        Logout
+                    </a>
                   </div>
                 </div>
               </div>

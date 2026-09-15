@@ -52,15 +52,16 @@
                 </div>
             </div><!-- End Service Item -->
 
-            <!-- Docker -->
+            <!-- Armbian -->
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
                 <div class="service-item item-cyan position-relative">
-                    <i class="bi bi-box-seam icon"></i>
+                    <i class="bi bi-cpu icon"></i>
                     <div>
-                        <h3>Docker</h3>
+                        <h3>Armbian</h3>
                         <p>
-                            Containerization untuk membuat environment aplikasi
-                            yang konsisten, portable, dan mudah di-deploy.
+                            Sistem operasi berbasis Linux yang ringan dan dioptimalkan untuk
+                            perangkat ARM, cocok untuk server, hosting aplikasi, dan
+                            kebutuhan deployment yang efisien.
                         </p>
                     </div>
                 </div>

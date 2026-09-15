@@ -5,8 +5,8 @@ Template Name: Able Pro - Tailwind Admin Template
 Author: Phoenixcoded
 Support: https://phoenixcoded.authordesk.app
 File: script.js
-Description:  this file will contains behavior, properties, 
-              functionality and interactions of a small module of ui element 
+Description:  this file will contains behavior, properties,
+              functionality and interactions of a small module of ui element
               which used to build a theme layout.
 =========================================================================
 =========================================================================
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.profile-notification-scroll')) {
     new SimpleBar(document.querySelector('.profile-notification-scroll'));
   }
-  
+
   if (document.querySelector('.announcement-scroll-block')) {
     new SimpleBar(document.querySelector('.announcement-scroll-block'));
   }
@@ -249,7 +249,7 @@ function setLayout() {
     } else if (layout === 'color-header') {
       // Change logo color for color-header layout
       if (document.querySelector('.pc-sidebar .m-header .logo-lg')) {
-        document.querySelector('.pc-sidebar .m-header .logo-lg').setAttribute('src', '../assets/images/logo-white.svg');
+        document.querySelector('.pc-sidebar .m-header .logo-lg').setAttribute('src', '/templates/backend/images/logo-white.svg');
       }
     } else if (layout === 'compact') {
       script.src = '../assets/js/layout-compact.js'; // Load script for compact layout
@@ -356,7 +356,7 @@ for (var l = 0; l < elem.length; l++) {
 
 // Change authentication logo
 document.querySelectorAll('.auth-main.v2 .img-brand').forEach((img) => {
-  img.setAttribute('src', '../assets/images/logo-white.svg');
+  img.setAttribute('src', '/templates/backend/images/logo-white.svg');
 });
 
 // Function to remove CSS classes with a given prefix from a DOM node
