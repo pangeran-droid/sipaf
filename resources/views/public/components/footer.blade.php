@@ -1,67 +1,101 @@
-<footer id="footer" class="footer position-relative light-background">
-
-<div class="container footer-top">
-    <div class="row gy-4">
-    <div class="col-lg-4 col-md-6 footer-about">
-        <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-        <span class="sitename">Sistem Informasi Pengaduan Akademik Fakultas (SIPAF)</span>
-        </a>
-        <div class="footer-contact pt-3">
-        <p>Kec. Paguyangan, Kabupaten Brebes</p>
-        <p>Jawa Tengah, Indonesia</p>
-        <p class="mt-3"><strong>Telepone:</strong> <span>+62 xxx-xxxx-xxxx</span></p>
-        <p><strong>Email:</strong> <span>info@example.com</span></p>
+<footer>
+    <div class="wrap">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="{{ route('home') }}" class="brand">
+                    <span class="brand-mark">
+                        FT
+                    </span>
+                    <span class="brand-text">
+                        <strong>
+                            SIPAF
+                        </strong>
+                        <span>
+                            Pengaduan Akademik Fakultas Teknik
+                        </span>
+                    </span>
+                </a>
+                <p>
+                    Kanal resmi Fakultas Teknik untuk menyampaikan pengaduan akademik secara transparan dan bertanggung jawab.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>
+                    Navigasi
+                </h5>
+                <ul>
+                    <li>
+                        <a href="#cara-kerja">
+                            Cara Kerja
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#kategori">
+                            Jenis Pengaduan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#privasi">
+                            Privasi &amp; Keamanan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#faq">
+                            Pertanyaan Umum
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>
+                    Layanan
+                </h5>
+                <ul>
+                    <li>
+                        <a href="{{ route('pengaduan.create') }}">
+                            Ajukan Pengaduan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('pengaduan.antrian') }}">
+                            Lacak Status
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('login') }}">
+                            Masuk Akun
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>
+                    Kontak
+                </h5>
+                <ul>
+                    <li>
+                        <a href="mailto:pengaduan@ft.ac.id">
+                            pengaduan@ft.ac.id
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+622112345678">
+                            (021) 1234 5678
+                        </a>
+                    </li>
+                    <li>
+                        Gedung C, Ruang Fakultas Teknik, Lt. 1
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="social-links d-flex mt-4">
-        <a href="#"><i class="bi bi-twitter-x"></i></a>
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
+        <div class="footer-bottom">
+            <span>
+                © {{ date('Y') }} Fakultas Teknik. Seluruh hak dilindungi.
+            </span>
+            <span>
+                Dikelola oleh Bagian Akademik &amp; Kemahasiswaan
+            </span>
         </div>
     </div>
-
-    <div class="col-lg-2 col-md-3 footer-links">
-        <h4>Link</h4>
-        <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Tentang SIPAF</a></li>
-        <li><a href="#">Buat Pengaduan</a></li>
-        <li><a href="#">Lihat Antrian</a></li>
-        </ul>
-    </div>
-
-    {{-- <div class="col-lg-2 col-md-3 footer-links">
-        <h4>Our Services</h4>
-        <ul>
-        <li><a href="#">Web Design</a></li>
-        <li><a href="#">Web Development</a></li>
-        <li><a href="#">Product Management</a></li>
-        <li><a href="#">Marketing</a></li>
-        <li><a href="#">Graphic Design</a></li>
-        </ul>
-    </div> --}}
-
-    <div class="col-lg-4 col-md-12 footer-newsletter">
-        <h4>SIPAF</h4>
-        <p>Gunakan SIPAF untuk menyampaikan pengaduan akademik dan memantau perkembangan penanganannya.</p>
-    </div>
-
-    </div>
-</div>
-
-<div class="container copyright text-center mt-4">
-    <p> © {{ date('Y') }}
-        <strong class="px-1 sitename">
-            SIPAF
-        </strong>
-        — Sistem Informasi Pengaduan Akademik Fakultas
-    </p>
-    <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you've purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-    </div>
-</div>
-
 </footer>

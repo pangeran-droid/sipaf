@@ -1,73 +1,41 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            @yield('title', 'SIPAF — Sistem Informasi Pengaduan Akademik Fakultas')
+        </title>
+        <meta name="description" content="@yield('description', 'Kanal resmi Fakultas untuk menyampaikan pengaduan akademik secara transparan, terlacak, dan rahasia.')">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta property="og:type" content="@yield('og_type', 'website')">
+        <meta property="og:title" content="@yield('og_title', 'SIGAP — Sistem Informasi Pengaduan Akademik Fakultas')">
+        <meta property="og:description" content="@yield('og_description', 'Kanal resmi Fakultas untuk menyampaikan pengaduan akademik secara transparan, terlacak, dan rahasia.')">
+        <meta property="og:image" content="@yield('og_image', asset('images/og-image.jpg'))">
+        <meta property="og:locale" content="id_ID">
+        <!-- Favicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link href="{{ asset('/templates/frontend/assets/img/favicon.png') }}" rel="icon" type="image/png">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <!-- Css -->
+        <link href="{{ asset('templates/frontend/assets/css/style.css') }}" rel="stylesheet">
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>{{ isset($title) ? $title . ' - ' : '' }}{{ config('app.name') }}</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+        @yield('styles')
 
-  <!-- Favicons -->
-  <link href="{{ asset('templates/frontend/assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('templates/frontend/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    </head>
+    <body>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        @include('public.components.header')
 
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('templates/frontend/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('templates/frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('templates/frontend/assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('templates/frontend/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('templates/frontend/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+            @yield('content')
 
-  <!-- Main CSS File -->
-  <link href="{{ asset('templates/frontend/assets/css/main.css') }}" rel="stylesheet">
+        @include('public.components.footer')
 
-  @yield('styles')
+        @yield('scripts')
 
-  <!-- =======================================================
-  * Template Name: QuickStart
-  * Template URL: https://bootstrapmade.com/quickstart-bootstrap-startup-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body class="starter-page-page">
-
-  @include('public.components.navbar')
-
-    <main class="main">
-        @yield('content')
-    </main>
-
-  @include('public.components.footer')
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="{{ asset('templates/frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('templates/frontend/assets/vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ asset('templates/frontend/assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('templates/frontend/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-  <script src="{{ asset('templates/frontend/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-
-  <!-- Main JS File -->
-  <script src="{{ asset('templates/frontend/assets/js/main.js') }}"></script>
-
-  @yield('scripts')
-
-</body>
-
+    </body>
 </html>

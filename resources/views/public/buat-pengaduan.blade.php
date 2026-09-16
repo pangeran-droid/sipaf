@@ -2,243 +2,167 @@
 
 @section('content')
 
-<section id="buat-pengaduan" class="contact section">
-<!-- Section Title -->
-<div class="container section-title" data-aos="fade-up">
-    <h2>Buat Pengaduan</h2>
-    <p>
-        Sampaikan pengaduan akademik Anda dengan jelas dan lengkap.
-        Kami akan menindaklanjuti setiap pengaduan yang masuk.
-    </p>
-</div>
-<!-- End Section Title -->
+<section style="padding: 76px 0 90px;">
+    <div class="wrap" style="max-width: 800px;">
 
+        <!-- Section Header -->
+        <div style="margin-bottom: 40px; text-align: center;">
+            <div class="hero-eyebrow">FORMULIR RESMI</div>
+            <h1 style="font-size: clamp(28px, 3.5vw, 40px); margin-bottom: 14px;">Buat Pengaduan Akademik</h1>
+            <p style="color: var(--ink-soft); font-size: 16px; max-width: 50ch; margin: 0 auto;">
+                Sampaikan pengaduan akademik Anda dengan jelas dan lengkap. Kami akan menindaklanjuti setiap pengaduan yang masuk.
+            </p>
+        </div>
 
-<div class="container" data-aos="fade-up" data-aos-delay="100">
-
-    <div class="row justify-content-center">
-
-        <div class="col-lg-8">
+        <div style="background: var(--white); border: 1px solid var(--line); padding: 40px 36px; box-shadow: 6px 6px 0 rgba(22,35,58,0.04);">
 
             <!-- Success Session -->
             @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-
-                    <i class="bi bi-check-circle-fill me-2"></i>
-                    <strong>Berhasil!</strong>
-                    {{ session('success') }}
-
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert"
-                            aria-label="Close">
-                    </button>
-
+                <div style="background: #EAF3EC; border: 1px solid #B8D6BE; color: #2C5634; padding: 14px 18px; margin-bottom: 28px; font-size: 14px; display: flex; align-items: flex-start; gap: 10px;">
+                    <span style="font-weight: 600; font-family: var(--mono);">[BERHASIL]</span>
+                    <div>{{ session('success') }}</div>
                 </div>
             @endif
-
 
             <!-- Error Session -->
             @if(session('error'))
-                <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-
-                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                    {{ session('error') }}
-
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert"
-                            aria-label="Close">
-                    </button>
-
+                <div style="background: #FDF2F2; border: 1px solid #E5C3C3; color: var(--maroon); padding: 14px 18px; margin-bottom: 28px; font-size: 14px; display: flex; align-items: flex-start; gap: 10px;">
+                    <span style="font-weight: 600; font-family: var(--mono);">[PERHATIAN]</span>
+                    <div>{{ session('error') }}</div>
                 </div>
             @endif
-
 
             <!-- Validation Errors -->
             @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-
-                    <div class="fw-semibold mb-2">
-                        <i class="bi bi-exclamation-circle-fill me-2"></i>
+                <div style="background: #FDF2F2; border: 1px solid #E5C3C3; color: var(--maroon); padding: 16px 18px; margin-bottom: 28px; font-size: 14px;">
+                    <div style="font-weight: 600; margin-bottom: 8px; font-family: var(--sans);">
                         Terdapat kesalahan pada pengisian form:
                     </div>
-
-                    <ul class="mb-0 ps-4">
+                    <ul style="margin: 0; padding-left: 20px;">
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                            <li style="margin-bottom: 4px;">{{ $error }}</li>
                         @endforeach
                     </ul>
-
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert"
-                            aria-label="Close">
-                    </button>
-
                 </div>
             @endif
 
-
             <!-- Form -->
             <form action="{{ route('pengaduan.store') }}" method="POST">
-
                 @csrf
 
-                <div class="row gy-4">
+                <div style="display: grid; gap: 24px;">
 
                     <!-- Nama Pengadu -->
-                    <div class="col-md-12">
-
-                        <label for="nama_pengadu" class="form-label">
-                            Nama Pengadu
+                    <div>
+                        <label for="nama_pengadu" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
+                            Nama Pengadu <span style="color: var(--maroon);">*</span>
                         </label>
-
                         <input
                             type="text"
                             name="nama_pengadu"
                             id="nama_pengadu"
-                            class="form-control @error('nama_pengadu') is-invalid @enderror"
                             value="{{ old('nama_pengadu') }}"
                             placeholder="Masukkan nama lengkap Anda"
                             required
+                            style="width: 100%; padding: 12px 14px; font-family: var(--sans); font-size: 14.5px; border: 1px solid var(--line); border-radius: var(--radius-doc); background: var(--paper); color: var(--ink); outline: none; transition: border-color 0.15s ease;"
+                            onfocus="this.style.borderColor='var(--ink)'"
+                            onblur="this.style.borderColor='var(--line)'"
                         >
-
                         @error('nama_pengadu')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                            <div style="color: var(--maroon); font-size: 13px; margin-top: 6px;">{{ $message }}</div>
                         @enderror
-
                     </div>
 
-
                     <!-- Jurusan -->
-                    <div class="col-md-12">
-
-                        <label for="jurusan_id" class="form-label">
-                            Jurusan Pengadu
+                    <div>
+                        <label for="jurusan_id" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
+                            Jurusan Pengadu <span style="color: var(--maroon);">*</span>
                         </label>
-
                         <select
                             name="jurusan_id"
                             id="jurusan_id"
-                            class="form-select @error('jurusan_id') is-invalid @enderror"
                             required
+                            style="width: 100%; padding: 12px 14px; font-family: var(--sans); font-size: 14.5px; border: 1px solid var(--line); border-radius: var(--radius-doc); background: var(--paper); color: var(--ink); outline: none; transition: border-color 0.15s ease;"
+                            onfocus="this.style.borderColor='var(--ink)'"
+                            onblur="this.style.borderColor='var(--line)'"
                         >
-
-                            <option value="" disabled
-                                {{ old('jurusan_id') ? '' : 'selected' }}>
+                            <option value="" disabled {{ old('jurusan_id') ? '' : 'selected' }}>
                                 -- Pilih Jurusan --
                             </option>
-
                             @foreach($jurusans as $jurusan)
-
-                                <option
-                                    value="{{ $jurusan->id }}"
-                                    {{ old('jurusan_id') == $jurusan->id ? 'selected' : '' }}
-                                >
+                                <option value="{{ $jurusan->id }}" {{ old('jurusan_id') == $jurusan->id ? 'selected' : '' }}>
                                     {{ $jurusan->nama_jurusan }}
                                 </option>
-
                             @endforeach
-
                         </select>
-
                         @error('jurusan_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                            <div style="color: var(--maroon); font-size: 13px; margin-top: 6px;">{{ $message }}</div>
                         @enderror
-
                     </div>
 
-
                     <!-- Nama Dosen -->
-                    <div class="col-md-12">
-
-                        <label for="nama_dosen" class="form-label">
-                            Nama Dosen Terkait
+                    <div>
+                        <label for="nama_dosen" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
+                            Nama Dosen Terkait <span style="color: var(--maroon);">*</span>
                         </label>
-
                         <input
                             type="text"
                             name="nama_dosen"
                             id="nama_dosen"
-                            class="form-control @error('nama_dosen') is-invalid @enderror"
                             value="{{ old('nama_dosen') }}"
                             placeholder="Masukkan nama dosen yang bersangkutan"
                             required
+                            style="width: 100%; padding: 12px 14px; font-family: var(--sans); font-size: 14.5px; border: 1px solid var(--line); border-radius: var(--radius-doc); background: var(--paper); color: var(--ink); outline: none; transition: border-color 0.15s ease;"
+                            onfocus="this.style.borderColor='var(--ink)'"
+                            onblur="this.style.borderColor='var(--line)'"
                         >
-
                         @error('nama_dosen')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                            <div style="color: var(--maroon); font-size: 13px; margin-top: 6px;">{{ $message }}</div>
                         @enderror
-
                     </div>
 
-
                     <!-- Isi Pengaduan -->
-                    <div class="col-md-12">
-
-                        <label for="isi_pengaduan" class="form-label">
-                            Isi Pengaduan
+                    <div>
+                        <label for="isi_pengaduan" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
+                            Isi Pengaduan <span style="color: var(--maroon);">*</span>
                         </label>
-
                         <textarea
                             name="isi_pengaduan"
                             id="isi_pengaduan"
                             rows="7"
-                            class="form-control @error('isi_pengaduan') is-invalid @enderror"
                             placeholder="Tuliskan detail pengaduan akademik Anda di sini..."
                             required
+                            style="width: 100%; padding: 12px 14px; font-family: var(--sans); font-size: 14.5px; border: 1px solid var(--line); border-radius: var(--radius-doc); background: var(--paper); color: var(--ink); outline: none; resize: vertical; transition: border-color 0.15s ease;"
+                            onfocus="this.style.borderColor='var(--ink)'"
+                            onblur="this.style.borderColor='var(--line)'"
                         >{{ old('isi_pengaduan') }}</textarea>
 
                         @error('isi_pengaduan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                            <div style="color: var(--maroon); font-size: 13px; margin-top: 6px;">{{ $message }}</div>
                         @enderror
 
-                        <div class="form-text mt-2">
-                            <i class="bi bi-info-circle me-1"></i>
-                            Sampaikan pengaduan dengan bahasa yang sopan dan jelas.
-                            Minimal 10 karakter.
+                        <div style="font-size: 12.5px; color: var(--ink-faint); margin-top: 6px; font-family: var(--mono);">
+                            * Sampaikan pengaduan dengan bahasa yang sopan dan jelas (Minimal 10 karakter).
                         </div>
-
                     </div>
 
-
-                    <!-- Button -->
-                    <div class="col-md-12 text-center">
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary px-4 py-3 rounded-pill shadow-sm"
-                        >
-                            <i class="bi bi-send me-2"></i>
-                            Kirim Pengaduan
+                    <!-- Button Actions -->
+                    <div style="margin-top: 10px; text-align: center; border-top: 1px dashed var(--line); padding-top: 30px;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 15px; font-weight: 600;">
+                            Kirim Pengaduan Sekarang
                         </button>
 
-                        <div class="mt-3 text-muted small">
-                            <i class="bi bi-shield-check me-1"></i>
-                            Data pengaduan akan diproses secara aman.
+                        <div style="margin-top: 16px; font-size: 13px; color: var(--ink-faint); display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <span class="dot" style="background: var(--gold);"></span> Data pengaduan diproses secara aman dan rahasia.
                         </div>
-
                     </div>
 
                 </div>
-
             </form>
 
         </div>
 
     </div>
-
-</div>
-
 </section>
 
 @endsection
