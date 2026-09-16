@@ -12,14 +12,18 @@ class AdminManagementController extends Controller
 {
     public function index()
     {
+        $title = 'Manajemen Admin';
+
         $admins = User::with('jurusan')->latest()->paginate(10);
-        return view('admin.manajemen-admin.index', compact('admins'));
+        return view('admin.manajemen-admin.index', compact('admins', 'title'));
     }
 
     public function create()
     {
+        $title = 'Tambah Admin Baru';
+
         $jurusans = Jurusan::all();
-        return view('admin.manajemen-admin.create', compact('jurusans'));
+        return view('admin.manajemen-admin.create', compact('jurusans', 'title'));
     }
 
     public function store(Request $request)
@@ -50,9 +54,11 @@ class AdminManagementController extends Controller
 
     public function edit($id)
     {
+        $title = 'Edit Admin';
+
         $admin = User::findOrFail($id);
         $jurusans = Jurusan::all();
-        return view('admin.manajemen-admin.edit', compact('admin', 'jurusans'));
+        return view('admin.manajemen-admin.edit', compact('admin', 'jurusans', 'title'));
     }
 
     public function update(Request $request, $id)

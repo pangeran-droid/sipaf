@@ -1,7 +1,5 @@
 @extends('layouts.public')
 
-@section('title', 'SIPAF — Sistem Informasi Pengaduan Akademik Fakultas')
-
 @section('description', 'Kanal resmi Fakultas untuk menyampaikan pengaduan akademik secara transparan, terlacak, dan rahasia.')
 
 @section('content')

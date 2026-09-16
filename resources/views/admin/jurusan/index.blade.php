@@ -1,10 +1,19 @@
 @extends('layouts.admin', ['title' => 'Kelola Jurusan - SIPAF Admin'])
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2 fw-bold">Manajemen Data Jurusan</h1>
-    <a href="{{ route('admin.jurusan.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Tambah Jurusan</a>
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="flex items-center justify-between flex-wrap gap-4 py-3">
+            <div class="page-header-title">
+                <h2 class="mb-0 text-xl font-bold text-gray-800 dark:text-white">Manajemen Data Jurusan</h2>
+            </div>
+            <a href="{{ route('admin.jurusan.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Tambah Jurusan</a>
+        </div>
+    </div>
 </div>
+<!-- [ breadcrumb ] end -->
 
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">

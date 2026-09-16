@@ -10,6 +10,8 @@ class LaporanController extends Controller
 {
     public function index(Request $request)
     {
+        $title = 'Laporan Pengaduan';
+
         $user = auth()->user();
         $query = Pengaduan::with('jurusan');
 
@@ -51,7 +53,8 @@ class LaporanController extends Controller
             'totalLaporan',
             'totalProses',
             'totalDitangani',
-            'totalSelesai'
+            'totalSelesai',
+            'title'
         ));
     }
 }

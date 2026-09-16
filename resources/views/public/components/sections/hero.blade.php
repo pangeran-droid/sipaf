@@ -33,7 +33,7 @@
                         TANDA TERIMA PENGADUAN
                     </div>
                     <div class="num">
-                        ADU/2026/00238
+                        ADU-202600101-0001
                     </div>
                 </div>
                 <div class="stamp">

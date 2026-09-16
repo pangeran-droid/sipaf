@@ -9,7 +9,9 @@ class AiAsistenController extends Controller
 {
     public function index()
     {
-        return view('admin.ai-asisten.index');
+        $title = 'Ai Asisten';
+
+        return view('admin.ai-asisten.index', compact('title'));
     }
 
     public function tanya(Request $request)

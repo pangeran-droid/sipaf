@@ -1,6 +1,7 @@
-@extends('layouts.admin', ['title' => 'Kelola Pengaduan - SIPAF Admin'])
+@extends('layouts.admin')
 
 @section('content')
+
 <!-- [ breadcrumb ] start -->
 <div class="page-header">
     <div class="page-block">

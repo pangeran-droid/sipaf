@@ -21,8 +21,10 @@ class PublicController extends Controller
 
     public function createPengaduan()
     {
+        $title = 'Buat Pengaduan';
+
         $jurusans = Jurusan::all();
-        return view('public.buat-pengaduan', compact('jurusans'));
+        return view('public.buat-pengaduan', compact('jurusans', 'title'));
     }
 
     public function storePengaduan(StorePengaduanRequest $request)
@@ -72,14 +74,14 @@ class PublicController extends Controller
 
 public function antrian(Request $request)
 {
+    $title = 'Ajukan Pengaduan';
+
     $query = Pengaduan::with('jurusan');
 
-    // Filter berdasarkan Jurusan
     if ($request->filled('jurusan_id')) {
         $query->where('jurusan_id', $request->jurusan_id);
     }
 
-    // Filter pencarian berdasarkan Kode Pengaduan
     if ($request->filled('search')) {
         $query->where(
             'kode_pengaduan',
@@ -88,7 +90,6 @@ public function antrian(Request $request)
         );
     }
 
-    // Total Data per Status
     $prosesTotal = (clone $query)
         ->where('status', 'Proses')
         ->count();
@@ -101,7 +102,6 @@ public function antrian(Request $request)
         ->where('status', 'Selesai')
         ->count();
 
-    // Tampilkan hanya 5 data terbaru
     $proses = (clone $query)
         ->where('status', 'Proses')
         ->latest()
@@ -129,7 +129,8 @@ public function antrian(Request $request)
         'prosesTotal',
         'sedangDitanganiTotal',
         'selesaiTotal',
-        'jurusans'
+        'jurusans',
+        'title'
     ));
 }
 

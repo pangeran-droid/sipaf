@@ -12,6 +12,8 @@ class AdminPengaduanController extends Controller
 {
     public function index(Request $request)
     {
+        $title = 'Daftar Pengaduan';
+
         $user = auth()->user();
         $query = Pengaduan::with('jurusan');
 
@@ -47,11 +49,13 @@ class AdminPengaduanController extends Controller
         $pengaduans = $query->latest()->paginate(10)->withQueryString();
         $jurusans = Jurusan::all();
 
-        return view('admin.pengaduan.index', compact('pengaduans', 'jurusans'));
+        return view('admin.pengaduan.index', compact('pengaduans', 'jurusans', 'title'));
     }
 
     public function show($id)
     {
+        $title = 'Detail Pengaduan';
+
         $user = auth()->user();
         $pengaduan = Pengaduan::with(['jurusan', 'histories.user'])->findOrFail($id);
 
@@ -60,7 +64,7 @@ class AdminPengaduanController extends Controller
             abort(403, 'Akses ditolak. Anda tidak berhak melihat pengaduan jurusan lain.');
         }
 
-        return view('admin.pengaduan.show', compact('pengaduan'));
+        return view('admin.pengaduan.show', compact('pengaduan', compact('title')));
     }
 
     public function updateStatus(Request $request, $id)

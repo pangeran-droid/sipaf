@@ -35,19 +35,19 @@
                     <use xlink:href="#custom-notification"></use>
                     </svg>
                     @if(isset($totalNotifikasi) && $totalNotifikasi > 0)
-                    <span class="badge bg-success-500 text-white rounded-full z-10 absolute right-0 top-0">
+                    <span class="badge bg-success-500 text-white rounded-full z-10 absolute right-0 top-0" id="notificationBadge">
                         {{ $totalNotifikasi }}
                     </span>
                     @endif
                 </a>
 
-                <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown p-2">
+                <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown p-2" id="notificationDropdown">
                     <div class="dropdown-header flex items-center justify-between py-4 px-5">
                         <h5 class="m-0">Notifications ({{ $totalNotifikasi ?? 0 }})</h5>
                         <a href="{{ route('admin.pengaduan.index') }}" class="btn btn-link btn-sm">Lihat Semua</a>
                     </div>
 
-                    <div class="dropdown-body header-notification-scroll relative py-4 px-5" style="max-height: calc(100vh - 215px)">
+                    <div class="dropdown-body header-notification-scroll relative py-4 px-5" id="notificationContent" style="max-height: calc(100vh - 215px)">
 
                         @if(isset($notifikasiPengaduan) && $notifikasiPengaduan->isNotEmpty())
                             <p class="text-span mb-3">Pengaduan Baru Masuk</p>
@@ -108,8 +108,8 @@
                       <img src="{{ asset('templates/backend/images/user/avatar-2.jpg') }}" alt="user-image" class="w-10 rounded-full" />
                     </div>
                     <div class="grow ms-3">
-                      <h6 class="mb-1">Carson Darrin 🖖</h6>
-                      <span>carson.darrin@company.io</span>
+                      <h6 class="mb-1">{{ auth()->user()->name }} 🖖</h6>
+                      <span>{{ auth()->user()->email }}</span>
                     </div>
                   </div>
                   <hr class="border-secondary-500/10 my-4" />
@@ -123,57 +123,20 @@
                           Notification
                         </h5>
                         <label class="inline-flex items-center cursor-pointer">
-                          <input type="checkbox" value="" class="sr-only peer" />
+                          <input type="checkbox" id="notificationToggle" value="" class="sr-only peer" checked />
                           <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                         </label>
                       </div>
                     </div>
                   </div>
                   <p class="text-span mb-3">Manage</p>
-                  <a href="#" class="dropdown-item">
+                  <a href="{{ route('admin.profile.edit') }}" class="dropdown-item">
                     <span>
                       <svg class="pc-icon text-muted me-2 inline-block">
                         <use xlink:href="#custom-lock-outline"></use>
                       </svg>
-                      <span>Change Password</span>
+                      <span>Ubah Password</span>
                     </span>
-                  </a>
-                  <hr class="border-secondary-500/10 my-4" />
-                  <p class="text-span mb-3">Team</p>
-                  <a href="#" class="dropdown-item">
-                    <span>
-                      <svg class="pc-icon text-muted me-2 inline-block">
-                        <use xlink:href="#custom-profile-2user-outline"></use>
-                      </svg>
-                      <span>UI Design team</span>
-                    </span>
-                    <div dir="ltr" class="flex -space-x-2 overflow-hidden *:flex *:items-center *:justify-center *:rounded-full *:w-[30px] *:h-[30px] *:hover:z-10 *:border *:border-2 *:border-white">
-                      <img src="{{ asset('templates/backend/images/user/avatar-1.jpg') }}" alt="user-image" class="avtar" />
-                      <span class="avtar bg-danger-500 text-white">K</span>
-                      <span class="avtar bg-success-500 text-white">
-                        <svg class="pc-icon m-0">
-                          <use xlink:href="#custom-user"></use>
-                        </svg>
-                      </span>
-                      <span class="avtar bg-theme-cardbg dark:bg-themedark-cardbg overflow-hidden">
-                        <span class="flex items-center justify-center w-full h-full bg-primary-500/10 text-primary-500">+2</span>
-                      </span>
-                    </div>
-                  </a>
-                  <a href="#" class="dropdown-item">
-                    <span>
-                      <svg class="pc-icon text-muted me-2 inline-block">
-                        <use xlink:href="#custom-add-outline"></use>
-                      </svg>
-                      <span>Add new</span>
-                    </span>
-                    <div dir="ltr" class="flex -space-x-2 overflow-hidden *:flex *:items-center *:justify-center *:rounded-full *:w-[30px] *:h-[30px] *:hover:z-10 *:border-2 *:border-white">
-                      <span class="avtar bg-primary-500 text-white">
-                        <svg class="pc-icon m-0">
-                          <use xlink:href="#custom-add-outline"></use>
-                        </svg>
-                      </span>
-                    </div>
                   </a>
                   <hr class="border-secondary-500/10 my-4" />
                   <div class="grid mb-3">

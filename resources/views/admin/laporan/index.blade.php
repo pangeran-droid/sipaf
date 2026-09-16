@@ -54,7 +54,7 @@
             </div>
 
             <div class="col-md-1 d-grid align-items-end">
-                <button type="submit" class="btn btn-primary w-100"><i class="bi bi-filter"></i></button>
+                <button type="submit" class="btn btn-primary w-100"><i class="text-lg leading-none ti ti-filter"></i></button>
             </div>
         </form>
     </div>

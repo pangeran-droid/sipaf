@@ -11,6 +11,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $title = 'Dashboard';
+
         $user = auth()->user();
         $tahunIni = Carbon::now()->year;
 
@@ -61,7 +63,8 @@ class DashboardController extends Controller
                 'pengaduanPerBulan',
                 'chartPengaduan',
                 'chartJurusan',
-                'tahunIni'
+                'tahunIni',
+                'title'
             ));
         }
 
@@ -110,7 +113,8 @@ class DashboardController extends Controller
             'pengaduanTerbaru',
             'pengaduanPerBulan',
             'chartPengaduan',
-            'tahunIni'
+            'tahunIni',
+            'title'
         ));
     }
 }

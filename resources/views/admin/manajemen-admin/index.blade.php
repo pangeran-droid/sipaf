@@ -1,10 +1,19 @@
-@extends('layouts.admin', ['title' => 'Manajemen Admin - SIPAF Admin'])
+@extends('layouts.admin')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2 fw-bold">Manajemen Akun Admin</h1>
-    <a href="{{ route('admin.manajemen-admin.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Tambah Admin</a>
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="flex items-center justify-between flex-wrap gap-4 py-3">
+            <div class="page-header-title">
+                <h2 class="mb-0 text-xl font-bold text-gray-800 dark:text-white">Manajemen Akun Admin</h2>
+            </div>
+            <a href="{{ route('admin.manajemen-admin.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Tambah Admin</a>
+        </div>
+    </div>
 </div>
+<!-- [ breadcrumb ] end -->
 
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">

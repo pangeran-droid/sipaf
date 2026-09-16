@@ -9,8 +9,10 @@ class JurusanManagementController extends Controller
 {
     public function index()
     {
+        $title= 'Daftar Hurusan';
+
         $jurusans = Jurusan::withCount(['users', 'pengaduans'])->latest()->paginate(10);
-        return view('admin.jurusan.index', compact('jurusans'));
+        return view('admin.jurusan.index', compact('jurusans', 'title'));
     }
 
     public function create()

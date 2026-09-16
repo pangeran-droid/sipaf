@@ -1,4 +1,4 @@
-@extends('layouts.public', ['title' => 'Buat Pengaduan - SIPAF'])
+@extends('layouts.public')
 
 @section('content')
 

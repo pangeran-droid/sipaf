@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminManagementController;
 use App\Http\Controllers\JurusanManagementController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AiAsistenController;
+use App\Http\Controllers\ProfileController;
 
 // ==========================================
 // 1. ROUTE PUBLIK (FRONTEND)
@@ -35,6 +36,13 @@ Route::middleware(['auth', 'role:super_admin,admin'])->prefix('admin')->name('ad
     // Ai Asisten
     Route::get('/ai-asisten', [AiAsistenController::class, 'index'])->name('ai-asisten.index');
     Route::post('/ai-asisten/tanya', [AiAsistenController::class, 'tanya'])->name('ai-asisten.tanya');
+
+    // Profile
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])
+    //     ->name('profile.destroy');
+
 
     // Khusus Super Admin (Manajemen Admin & Jurusan)
     Route::middleware(['role:super_admin'])->group(function () {

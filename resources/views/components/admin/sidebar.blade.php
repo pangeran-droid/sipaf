@@ -24,16 +24,16 @@
             </div>
             <div class="hidden pc-user-links" id="pc_sidebar_userlink">
               <div class="pt-3 *:flex *:items-center *:py-2 *:gap-2.5 *:hover:text-primary-500">
-                <a href="#">
+                <a href="{{ route('admin.profile.edit') }}">
                   <i class="text-lg leading-none ti ti-user"></i>
-                  <span data-i18n="My Account">My Account</span>
+                  <span data-i18n="My Account">Profile Saya</span>
                 </a>
                 <form action="{{ route('logout') }}" method="POST" id="logout-form" class="hidden">
                     @csrf
                 </form>
                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="text-lg leading-none ti ti-power"></i>
-                    <span>{{ __('Log Out') }}</span>
+                    <span>{{ __('Keluar') }}</span>
                 </a>
               </div>
             </div>

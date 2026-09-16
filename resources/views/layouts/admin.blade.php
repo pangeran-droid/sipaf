@@ -68,5 +68,63 @@
 
     @stack('scripts')
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const toggle = document.getElementById('notificationToggle');
+            const content = document.getElementById('notificationContent');
+            const badge = document.getElementById('notificationBadge');
+
+            if (!toggle) {
+                return;
+            }
+
+            const savedStatus = localStorage.getItem('notification_enabled');
+
+            if (savedStatus === null) {
+                toggle.checked = true;
+            } else {
+                toggle.checked = savedStatus === 'true';
+            }
+
+            updateNotification();
+
+            toggle.addEventListener('change', function () {
+
+                localStorage.setItem(
+                    'notification_enabled',
+                    this.checked ? 'true' : 'false'
+                );
+
+                updateNotification();
+            });
+
+            function updateNotification() {
+
+                if (toggle.checked) {
+
+                    if (content) {
+                        content.style.display = '';
+                    }
+
+                    if (badge) {
+                        badge.style.display = '';
+                    }
+
+                } else {
+
+                    if (content) {
+                        content.style.display = 'none';
+                    }
+
+                    if (badge) {
+                        badge.style.display = 'none';
+                    }
+                }
+            }
+
+        });
+    </script>
+
 </body>
 </html>
