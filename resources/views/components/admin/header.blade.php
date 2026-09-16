@@ -29,123 +29,70 @@
       <!-- [Mobile Media Block end] -->
       <div class="ms-auto">
         <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
-          <li class="dropdown pc-h-item">
-            <a class="pc-head-link dropdown-toggle me-0" data-pc-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-              <svg class="pc-icon">
-                <use xlink:href="#custom-notification"></use>
-              </svg>
-              <span class="badge bg-success-500 text-white rounded-full z-10 absolute right-0 top-0">3</span>
-            </a>
-            <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown p-2">
-              <div class="dropdown-header flex items-center justify-between py-4 px-5">
-                <h5 class="m-0">Notifications</h5>
-                <a href="#!" class="btn btn-link btn-sm">Mark all read</a>
-              </div>
-              <div class="dropdown-body header-notification-scroll relative py-4 px-5" style="max-height: calc(100vh - 215px)">
-                <p class="text-span mb-3">Today</p>
-                <div class="card mb-2">
-                  <div class="card-body">
-                    <div class="flex gap-4">
-                      <div class="shrink-0">
-                        <svg class="pc-icon text-primary-500 w-[22px] h-[22px]">
-                          <use xlink:href="#custom-layer"></use>
-                        </svg>
-                      </div>
-                      <div class="grow">
-                        <span class="float-end text-sm text-muted">2 min ago</span>
-                        <h5 class="text-body mb-2">UI/UX Design</h5>
-                        <p class="mb-0">
-                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                          type and scrambled it to make a type
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card mb-2">
-                  <div class="card-body">
-                    <div class="flex gap-4">
-                      <div class="shrink-0">
-                        <svg class="pc-icon text-primary-500 w-[22px] h-[22px]">
-                          <use xlink:href="#custom-sms"></use>
-                        </svg>
-                      </div>
-                      <div class="grow">
-                        <span class="float-end text-sm text-muted">1 hour ago</span>
-                        <h5 class="text-body mb-2">Message</h5>
-                        <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-span mb-3 mt-4">Yesterday</p>
-                <div class="card mb-2">
-                  <div class="card-body">
-                    <div class="flex gap-4">
-                      <div class="shrink-0">
-                        <svg class="pc-icon text-primary-500 w-[22px] h-[22px]">
-                          <use xlink:href="#custom-document-text"></use>
-                        </svg>
-                      </div>
-                      <div class="grow ms-3">
-                        <span class="float-end text-sm text-muted">2 hour ago</span>
-                        <h5 class="text-body mb-2">Forms</h5>
-                        <p class="mb-0">
-                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                          type and scrambled it to make a type
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card mb-2">
-                  <div class="card-body">
-                    <div class="flex gap-4">
-                      <div class="shrink-0">
-                        <svg class="pc-icon text-primary-500 w-[22px] h-[22px]">
-                          <use xlink:href="#custom-user-bold"></use>
-                        </svg>
-                      </div>
-                      <div class="grow ms-3">
-                        <span class="float-end text-sm text-muted">12 hour ago</span>
-                        <h5 class="text-body mb-2">Challenge invitation</h5>
-                        <p class="mb-2">
-                          <span class="text-dark">Jonny aber</span>
-                          invites to join the challenge
-                        </p>
-                        <button class="btn btn-sm btn-outline-secondary me-2">Decline</button>
-                        <button class="btn btn-sm btn-primary">Accept</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card mb-2">
-                  <div class="card-body">
-                    <div class="flex gap-4">
-                      <div class="shrink-0">
-                        <svg class="pc-icon text-primary-500 w-[22px] h-[22px]">
-                          <use xlink:href="#custom-security-safe"></use>
-                        </svg>
-                      </div>
-                      <div class="grow ms-3">
-                        <span class="float-end text-sm text-muted">5 hour ago</span>
-                        <h5 class="text-body mb-2">Security</h5>
-                        <p class="mb-0">
-                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                          type and scrambled it to make a type
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center py-2">
-                <a href="#!" class="text-danger-500 hover:text-danger-600 focus:text-danger-600 active:text-danger-600">
-                  Clear all Notifications
+            <li class="dropdown pc-h-item">
+                <a class="pc-head-link dropdown-toggle me-0" data-pc-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <svg class="pc-icon">
+                    <use xlink:href="#custom-notification"></use>
+                    </svg>
+                    @if(isset($totalNotifikasi) && $totalNotifikasi > 0)
+                    <span class="badge bg-success-500 text-white rounded-full z-10 absolute right-0 top-0">
+                        {{ $totalNotifikasi }}
+                    </span>
+                    @endif
                 </a>
-              </div>
-            </div>
-          </li>
+
+                <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown p-2">
+                    <div class="dropdown-header flex items-center justify-between py-4 px-5">
+                        <h5 class="m-0">Notifications ({{ $totalNotifikasi ?? 0 }})</h5>
+                        <a href="{{ route('admin.pengaduan.index') }}" class="btn btn-link btn-sm">Lihat Semua</a>
+                    </div>
+
+                    <div class="dropdown-body header-notification-scroll relative py-4 px-5" style="max-height: calc(100vh - 215px)">
+
+                        @if(isset($notifikasiPengaduan) && $notifikasiPengaduan->isNotEmpty())
+                            <p class="text-span mb-3">Pengaduan Baru Masuk</p>
+
+                            @foreach($notifikasiPengaduan as $notif)
+                                <div class="card mb-2 hover:bg-gray-50 transition-all">
+                                    <div class="card-body">
+                                        <div class="flex gap-4">
+                                        <div class="shrink-0">
+                                            <svg class="pc-icon text-primary-500 w-[22px] h-[22px]">
+                                                <use xlink:href="#custom-document-text"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="grow">
+                                            <span class="float-end text-sm text-muted">{{ $notif->created_at->diffForHumans() }}</span>
+                                            <h5 class="text-body mb-2">
+                                                {{ $notif->jurusan->nama_jurusan ?? 'Umum' }}
+                                                <span class="text-xs bg-warning-500/10 text-warning-500 px-2 py-0.5 rounded-full ml-1">Baru</span>
+                                            </h5>
+                                            <p class="mb-2 text-sm text-gray-600">
+                                                {{ Str::limit($notif->isi_pengaduan ?? $notif->deskripsi, 80, '...') }}
+                                            </p>
+                                            <a href="{{ route('admin.pengaduan.index') }}" class="btn btn-sm btn-light-primary py-1 px-3 inline-block rounded text-xs">
+                                                Periksa
+                                            </a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="text-center py-4 text-muted">
+                                <p class="mb-0">Tidak ada pengaduan baru masuk.</p>
+                            </div>
+                        @endif
+
+                    </div>
+
+                    <div class="text-center py-2 border-t border-gray-100 mt-2">
+                        <a href="{{ route('admin.pengaduan.index') }}" class="text-primary-500 hover:text-primary-600 font-medium text-sm">
+                            Buka Semua Daftar Pengaduan
+                        </a>
+                    </div>
+                </div>
+            </li>
           <li class="dropdown pc-h-item header-user-profile">
             <a class="pc-head-link dropdown-toggle arrow-none me-0" data-pc-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-pc-auto-close="outside" aria-expanded="false">
               <img src="{{ asset('templates/backend/images/user/avatar-2.jpg') }}" alt="user-image" class="user-avtar w-10 h-10 rounded-full" />

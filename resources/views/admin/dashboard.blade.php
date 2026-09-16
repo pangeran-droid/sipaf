@@ -2,18 +2,18 @@
 
 @section('content')
 
-    <!-- Header dashboard -->
-    <div class="flex items-center justify-between mb-6">
-        <div>
-            <h2 class="text-xl font-semibold mb-1">
-                Dashboard
-            </h2>
-
-            <p class="text-muted mb-0">
-                Ringkasan pengaduan tahun {{ $tahunIni }}
-            </p>
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="flex items-center justify-between flex-wrap gap-4 py-3">
+            <div class="page-header-title">
+                <h2 class="mb-0 text-xl font-bold text-gray-800 dark:text-white">Dashboard</h2>
+            </div>
+            <p class="text-muted mb-0"> Ringkasan pengaduan tahun {{ $tahunIni }}</p>
         </div>
     </div>
+</div>
+<!-- [ breadcrumb ] end -->
 
     <!-- Info user -->
     <div class="grid grid-cols-12 gap-x-6 mt-5" id="welcome-card-wrapper">
@@ -217,56 +217,6 @@
             </div>
         </div>
 
-        <!-- Ringkasan status -->
-        <div class="col-span-12 lg:col-span-6">
-            <div class="card">
-                <div class="card-body">
-
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h5 class="mb-1">Status Pengaduan</h5>
-                            <p class="text-muted mb-0">Distribusi status</p>
-                        </div>
-                    </div>
-
-                    <div id="status-pengaduan-chart"></div><br>
-
-                    <!-- Status Horizontal -->
-                    <div class="flex items-center justify-between gap-4 mt-4">
-
-                        <!-- Proses -->
-                        <div class="flex-1 text-center">
-                            <div class="flex items-center justify-center gap-2 mb-1">
-                                <span class="w-2.5 h-2.5 rounded-full bg-warning-500 inline-block"></span>
-                                <p class="text-muted mb-0 text-sm">Proses</p>
-                            </div>
-                            <h6 class="mb-0">{{ $proses }}</h6>
-                        </div>
-
-                        <!-- Ditangani -->
-                        <div class="flex-1 text-center">
-                            <div class="flex items-center justify-center gap-2 mb-1">
-                                <span class="w-2.5 h-2.5 rounded-full bg-info-500 inline-block"></span>
-                                <p class="text-muted mb-0 text-sm">Ditangani</p>
-                            </div>
-                            <h6 class="mb-0">{{ $sedangDitangani }}</h6>
-                        </div>
-
-                        <!-- Selesai -->
-                        <div class="flex-1 text-center">
-                            <div class="flex items-center justify-center gap-2 mb-1">
-                                <span class="w-2.5 h-2.5 rounded-full bg-success-500 inline-block"></span>
-                                <p class="text-muted mb-0 text-sm">Selesai</p>
-                            </div>
-                            <h6 class="mb-0">{{ $selesai }}</h6>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
         <!-- Pengaduan terbaru -->
         <div class="col-span-12 lg:col-span-6">
             <div class="card">
@@ -355,6 +305,56 @@
 
                 </div>
 
+            </div>
+        </div>
+
+        <!-- Ringkasan status -->
+        <div class="col-span-12 lg:col-span-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h5 class="mb-1">Status Pengaduan</h5>
+                            <p class="text-muted mb-0">Distribusi status</p>
+                        </div>
+                    </div>
+
+                    <div id="status-pengaduan-chart"></div><br>
+
+                    <!-- Status Horizontal -->
+                    <div class="flex items-center justify-between gap-4 mt-4">
+
+                        <!-- Proses -->
+                        <div class="flex-1 text-center">
+                            <div class="flex items-center justify-center gap-2 mb-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-warning-500 inline-block"></span>
+                                <p class="text-muted mb-0 text-sm">Proses</p>
+                            </div>
+                            <h6 class="mb-0">{{ $proses }}</h6>
+                        </div>
+
+                        <!-- Ditangani -->
+                        <div class="flex-1 text-center">
+                            <div class="flex items-center justify-center gap-2 mb-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-info-500 inline-block"></span>
+                                <p class="text-muted mb-0 text-sm">Ditangani</p>
+                            </div>
+                            <h6 class="mb-0">{{ $sedangDitangani }}</h6>
+                        </div>
+
+                        <!-- Selesai -->
+                        <div class="flex-1 text-center">
+                            <div class="flex items-center justify-center gap-2 mb-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-success-500 inline-block"></span>
+                                <p class="text-muted mb-0 text-sm">Selesai</p>
+                            </div>
+                            <h6 class="mb-0">{{ $selesai }}</h6>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
 

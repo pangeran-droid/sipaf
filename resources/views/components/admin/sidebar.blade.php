@@ -63,7 +63,7 @@
             <label>Asisten</label>
           </li>
           <li class="pc-item">
-            <a href="#" class="pc-link">
+            <a href="{{ route('admin.ai-asisten.index') }}" class="pc-link">
               <span class="pc-micon">
                 <svg class="pc-icon">
                   <use xlink:href="#custom-mouse-circle"></use>
@@ -82,18 +82,20 @@
                   <use xlink:href="#custom-document-filter"></use>
                 </svg> </span><span class="pc-mtext">Laporan Pengaduan</span></a>
           </li>
-          <li class="pc-item">
-            <a href="{{ route('admin.jurusan.index') }}" class="pc-link"><span class="pc-micon">
-                <svg class="pc-icon">
-                  <use xlink:href="#custom-layer"></use>
-                </svg> </span><span class="pc-mtext">Jurusan</span></a>
-          </li>
-          <li class="pc-item">
-            <a href="{{ route('admin.manajemen-admin.index') }}" class="pc-link"><span class="pc-micon">
-                <svg class="pc-icon">
-                  <use xlink:href="#custom-user"></use>
-                </svg> </span><span class="pc-mtext">Admin</span></a>
-          </li>
+          @if(auth()->user()->role === 'super_admin')
+            <li class="pc-item">
+                <a href="{{ route('admin.jurusan.index') }}" class="pc-link"><span class="pc-micon">
+                    <svg class="pc-icon">
+                    <use xlink:href="#custom-layer"></use>
+                    </svg> </span><span class="pc-mtext">Jurusan</span></a>
+            </li>
+            <li class="pc-item">
+                <a href="{{ route('admin.manajemen-admin.index') }}" class="pc-link"><span class="pc-micon">
+                    <svg class="pc-icon">
+                    <use xlink:href="#custom-user"></use>
+                    </svg> </span><span class="pc-mtext">Admin</span></a>
+            </li>
+          @endif
 
           {{-- <li class="pc-item pc-caption">
             <label>Other</label>

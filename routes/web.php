@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminPengaduanController;
 use App\Http\Controllers\AdminManagementController;
 use App\Http\Controllers\JurusanManagementController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\AiAsistenController;
 
 // ==========================================
 // 1. ROUTE PUBLIK (FRONTEND)
@@ -30,6 +31,10 @@ Route::middleware(['auth', 'role:super_admin,admin'])->prefix('admin')->name('ad
 
     // Laporan Pengaduan
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+
+    // Ai Asisten
+    Route::get('/ai-asisten', [AiAsistenController::class, 'index'])->name('ai-asisten.index');
+    Route::post('/ai-asisten/tanya', [AiAsistenController::class, 'tanya'])->name('ai-asisten.tanya');
 
     // Khusus Super Admin (Manajemen Admin & Jurusan)
     Route::middleware(['role:super_admin'])->group(function () {

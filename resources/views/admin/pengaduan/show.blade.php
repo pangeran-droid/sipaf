@@ -1,10 +1,19 @@
 @extends('layouts.admin', ['title' => 'Detail Pengaduan - SIPAF Admin'])
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2 fw-bold">Detail Pengaduan: {{ $pengaduan->kode_pengaduan }}</h1>
-    <a href="{{ route('admin.pengaduan.index') }}" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Kembali</a>
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="flex items-center justify-between flex-wrap gap-4 py-3">
+            <div class="page-header-title">
+                <h2 class="mb-0 text-xl font-bold text-gray-800 dark:text-white">Detail Pengaduan: {{ $pengaduan->kode_pengaduan }}</h2>
+            </div>
+            <a href="{{ route('admin.pengaduan.index') }}" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Kembali</a>
+        </div>
+    </div>
 </div>
+<!-- [ breadcrumb ] end -->
 
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -110,8 +119,8 @@
                         <div class="mb-3 border-start ps-3 border-3 border-primary">
                             <p class="small text-muted mb-1"><i class="bi bi-calendar-event me-1"></i>{{ $history->created_at->format('d M Y, H:i') }}</p>
                             <p class="mb-1 fw-bold">
-                                <span class="badge bg-secondary">{{ $history->status_sebelumnya }}</span> 
-                                <i class="bi bi-arrow-right"></i> 
+                                <span class="badge bg-secondary">{{ $history->status_sebelumnya }}</span>
+                                <i class="bi bi-arrow-right"></i>
                                 <span class="badge bg-primary">{{ $history->status_baru }}</span>
                             </p>
                             <p class="small text-secondary mb-1"><strong>Catatan:</strong> {{ $history->catatan }}</p>

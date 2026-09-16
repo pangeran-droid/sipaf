@@ -19,6 +19,29 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('*', function ($view) {
+            $notifikasiPengaduan = collect();
+            $totalNotifikasi = 0;
+
+            if (auth()->check()) {
+                $user = auth()->user();
+
+                $query = \App\Models\Pengaduan::with('jurusan')
+                    ->where('status', 'Proses')
+                    ->latest();
+
+                if ($user->role !== 'super_admin') {
+                    $query->where('jurusan_id', $user->jurusan_id);
+                }
+
+                $notifikasiPengaduan = $query->take(5)->get();
+                $totalNotifikasi = $query->count();
+            }
+
+            $view->with([
+                'notifikasiPengaduan' => $notifikasiPengaduan,
+                'totalNotifikasi' => $totalNotifikasi
+            ]);
+        });
     }
 }

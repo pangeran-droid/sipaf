@@ -14,35 +14,19 @@ class DashboardController extends Controller
         $user = auth()->user();
         $tahunIni = Carbon::now()->year;
 
-        /*
-        |--------------------------------------------------------------------------
-        | SUPER ADMIN
-        |--------------------------------------------------------------------------
-        */
+        /* Super Admin */
         if ($user->role === 'super_admin') {
 
-            // Statistik utama
             $totalPengaduan = Pengaduan::count();
-
             $proses = Pengaduan::where('status', 'Proses')->count();
-
             $sedangDitangani = Pengaduan::where('status', 'Sedang Ditangani')->count();
-
             $selesai = Pengaduan::where('status', 'Selesai')->count();
-
-
-            // Statistik pengaduan per jurusan
             $jurusans = Jurusan::withCount('pengaduans')->get();
-
-
-            // Pengaduan terbaru
             $pengaduanTerbaru = Pengaduan::with('jurusan')
                 ->latest()
                 ->take(5)
                 ->get();
 
-
-            // Statistik pengaduan per bulan
             $pengaduanPerBulan = [];
 
             for ($bulan = 1; $bulan <= 12; $bulan++) {
@@ -54,8 +38,6 @@ class DashboardController extends Controller
                 ->count();
             }
 
-
-            // Data untuk ApexCharts
             $chartPengaduan = [
                 'labels' => [
                     'Jan', 'Feb', 'Mar', 'Apr',
@@ -64,14 +46,10 @@ class DashboardController extends Controller
                 ],
                 'data' => $pengaduanPerBulan,
             ];
-
-
-            // Data chart jurusan
             $chartJurusan = [
                 'labels' => $jurusans->pluck('nama_jurusan')->values(),
                 'data' => $jurusans->pluck('pengaduans_count')->values(),
             ];
-
 
             return view('admin.dashboard', compact(
                 'totalPengaduan',
@@ -87,41 +65,25 @@ class DashboardController extends Controller
             ));
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | ADMIN JURUSAN
-        |--------------------------------------------------------------------------
-        */
-
+        /* Admin Jurusan */
         $jurusanId = $user->jurusan_id;
-
         $query = Pengaduan::where('jurusan_id', $jurusanId);
-
         $totalPengaduan = (clone $query)->count();
-
         $proses = (clone $query)
             ->where('status', 'Proses')
             ->count();
-
         $sedangDitangani = (clone $query)
             ->where('status', 'Sedang Ditangani')
             ->count();
-
         $selesai = (clone $query)
             ->where('status', 'Selesai')
             ->count();
-
-
-        // Pengaduan terbaru jurusan
         $pengaduanTerbaru = (clone $query)
             ->with('jurusan')
             ->latest()
             ->take(5)
             ->get();
 
-
-        // Statistik bulanan admin jurusan
         $pengaduanPerBulan = [];
 
         for ($bulan = 1; $bulan <= 12; $bulan++) {
@@ -131,8 +93,6 @@ class DashboardController extends Controller
                 ->count();
         }
 
-
-        // Chart untuk admin jurusan
         $chartPengaduan = [
             'labels' => [
                 'Jan', 'Feb', 'Mar', 'Apr',
@@ -141,7 +101,6 @@ class DashboardController extends Controller
             ],
             'data' => $pengaduanPerBulan,
         ];
-
 
         return view('admin.dashboard', compact(
             'totalPengaduan',

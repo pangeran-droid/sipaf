@@ -1,10 +1,19 @@
 @extends('layouts.admin', ['title' => 'Laporan Pengaduan - SIPAF Admin'])
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2 fw-bold">Laporan Rekapitulasi Pengaduan Akademik</h1>
-    <button onclick="window.print()" class="btn btn-outline-primary"><i class="bi bi-printer me-1"></i>Cetak / Export PDF</button>
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="flex items-center justify-between flex-wrap gap-4 py-3">
+            <div class="page-header-title">
+                <h2 class="mb-0 text-xl font-bold text-gray-800 dark:text-white">Laporan Rekapitulasi Pengaduan Akademik</h2>
+            </div>
+            <button onclick="window.print()" class="btn btn-outline-primary"><i class="bi bi-printer me-1"></i>Cetak / Export PDF</button>
+        </div>
+    </div>
 </div>
+<!-- [ breadcrumb ] end -->
 
 <!-- Filter Laporan -->
 <div class="card border-0 shadow-sm mb-4">

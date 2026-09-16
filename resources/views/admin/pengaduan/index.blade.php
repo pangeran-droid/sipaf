@@ -1,9 +1,17 @@
 @extends('layouts.admin', ['title' => 'Kelola Pengaduan - SIPAF Admin'])
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2 fw-bold">Daftar Pengaduan Akademik</h1>
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="flex items-center justify-between flex-wrap gap-4 py-3">
+            <div class="page-header-title">
+                <h2 class="mb-0 text-xl font-bold text-gray-800 dark:text-white">Daftar Pengaduan Akademik</h2>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- [ breadcrumb ] end -->
 
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -19,7 +27,7 @@
             <div class="col-md-3">
                 <input type="text" class="form-control" name="search" value="{{ request('search') }}" placeholder="Cari Kode / Nama Pengadu">
             </div>
-            
+
             @if(auth()->user()->role === 'super_admin')
                 <div class="col-md-3">
                     <select name="jurusan_id" class="form-select">
