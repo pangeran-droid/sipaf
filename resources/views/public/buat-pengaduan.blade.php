@@ -5,7 +5,6 @@
 <section style="padding: 76px 0 90px;">
     <div class="wrap" style="max-width: 800px;">
 
-        {{-- Section Header --}}
         <div style="margin-bottom: 40px; text-align: center;">
             <div class="hero-eyebrow">FORMULIR RESMI</div>
             <h1 style="font-size: clamp(28px, 3.5vw, 40px); margin-bottom: 14px;">Buat Pengaduan Akademik</h1>
@@ -16,7 +15,6 @@
 
         <div style="background: var(--white); border: 1px solid var(--line); padding: 40px 36px; box-shadow: 6px 6px 0 rgba(22,35,58,0.04);">
 
-            {{-- Success Session --}}
             @if(session('success'))
                 <div style="background: #EAF3EC; border: 1px solid #B8D6BE; color: #2C5634; padding: 14px 18px; margin-bottom: 28px; font-size: 14px; display: flex; align-items: flex-start; gap: 10px;">
                     <span style="font-weight: 600; font-family: var(--mono);">[BERHASIL]</span>
@@ -24,7 +22,6 @@
                 </div>
             @endif
 
-            {{-- Error Session --}}
             @if(session('error'))
                 <div style="background: #FDF2F2; border: 1px solid #E5C3C3; color: var(--maroon); padding: 14px 18px; margin-bottom: 28px; font-size: 14px; display: flex; align-items: flex-start; gap: 10px;">
                     <span style="font-weight: 600; font-family: var(--mono);">[PERHATIAN]</span>
@@ -32,7 +29,6 @@
                 </div>
             @endif
 
-            {{-- Validation Errors --}}
             @if ($errors->any())
                 <div style="background: #FDF2F2; border: 1px solid #E5C3C3; color: var(--maroon); padding: 16px 18px; margin-bottom: 28px; font-size: 14px;">
                     <div style="font-weight: 600; margin-bottom: 8px; font-family: var(--sans);">
@@ -46,13 +42,11 @@
                 </div>
             @endif
 
-            {{-- Form --}}
-            <form action="{{ route('pengaduan.store') }}" method="POST">
+            <form action="{{ route('pengaduan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div style="display: grid; gap: 24px;">
 
-                    {{-- Nama Pengadu --}}
                     <div>
                         <label for="nama_pengadu" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
                             Nama Pengadu <span style="color: var(--maroon);">*</span>
@@ -73,7 +67,6 @@
                         @enderror
                     </div>
 
-                    {{-- Jurusan --}}
                     <div>
                         <label for="jurusan_id" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
                             Jurusan Pengadu <span style="color: var(--maroon);">*</span>
@@ -100,7 +93,6 @@
                         @enderror
                     </div>
 
-                    {{-- Nama Dosen --}}
                     <div>
                         <label for="nama_dosen" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
                             Nama Dosen Terkait <span style="color: var(--maroon);">*</span>
@@ -121,7 +113,6 @@
                         @enderror
                     </div>
 
-                    {{-- Isi Pengaduan --}}
                     <div>
                         <label for="isi_pengaduan" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
                             Isi Pengaduan <span style="color: var(--maroon);">*</span>
@@ -146,7 +137,25 @@
                         </div>
                     </div>
 
-                    {{-- Button Actions --}}
+                    <div>
+                        <label for="lampiran" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
+                            Lampiran Bukti (Opsional)
+                        </label>
+                        <input
+                            type="file"
+                            name="lampiran"
+                            id="lampiran"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            style="width: 100%; padding: 10px 14px; font-family: var(--sans); font-size: 14px; border: 1px solid var(--line); border-radius: var(--radius-doc); background: var(--paper); color: var(--ink); outline: none;"
+                        >
+                        @error('lampiran')
+                            <div style="color: var(--maroon); font-size: 13px; margin-top: 6px;">{{ $message }}</div>
+                        @enderror
+                        <div style="font-size: 12.5px; color: var(--ink-faint); margin-top: 6px; font-family: var(--mono);">
+                            * Format yang didukung: JPG, JPEG, PNG, atau PDF. Ukuran maksimal 2MB.
+                        </div>
+                    </div>
+
                     <div style="margin-top: 10px; text-align: center; border-top: 1px dashed var(--line); padding-top: 30px;">
                         <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 15px; font-weight: 600;">
                             Kirim Pengaduan Sekarang

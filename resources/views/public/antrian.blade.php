@@ -5,7 +5,6 @@
 <section style="padding: 76px 0 90px;">
     <div class="wrap" style="max-width: 1200px;">
 
-        {{-- Section Header --}}
         <div style="margin-bottom: 50px; text-align: center;">
             <div class="hero-eyebrow">MONITORING PUBLIK</div>
             <h1 style="font-size: clamp(28px, 3.5vw, 40px); margin-bottom: 14px;">Antrian Pengaduan</h1>
@@ -14,14 +13,12 @@
             </p>
         </div>
 
-        {{-- Filter Box --}}
         <div style="margin-bottom: 50px;">
             <form id="filter-form" method="GET" action="{{ route('pengaduan.antrian') }}">
                 <div style="background: var(--white); border: 1px solid var(--line); padding: 28px; box-shadow: 6px 6px 0 rgba(22,35,58,0.03);">
 
                     <div style="display: grid; grid-template-columns: 1.2fr 1.2fr 0.6fr; gap: 20px; align-items: end;">
 
-                        {{-- Search / Kode Pengaduan --}}
                         <div>
                             <label for="search" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
                                 Kode Pengaduan
@@ -37,8 +34,8 @@
                         </div>
 
                         {{-- Jurusan --}}
-                        {{-- <div>
-                            <label for="jurusan_id" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
+                        <div>
+                            {{-- <label for="jurusan_id" style="display: block; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 8px;">
                                 Jurusan Terkait
                             </label>
                             <select
@@ -52,10 +49,9 @@
                                         {{ $jurusan->nama_jurusan }}
                                     </option>
                                 @endforeach
-                            </select>
-                        </div> --}}
+                            </select> --}}
+                        </div>
 
-                        {{-- Button Filter --}}
                         <div>
                             <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 14.5px; text-align: center;">
                                 Filter Data
@@ -67,16 +63,13 @@
                 </div>
             </form>
         </div>
-        {{-- End Filter --}}
 
 
-        {{-- Kanban Layout (3 Kolom) --}}
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start;">
 
             {{-- PROSES --}}
             <div class="kanban-column">
 
-                {{-- Header --}}
                 <div class="kanban-header proses">
                     <div>
                         <span class="status-icon"><i class="fa-solid fa-hourglass-start"></i></span>
@@ -88,7 +81,6 @@
                     <span class="status-count">{{ $prosesTotal }}</span>
                 </div>
 
-                {{-- Body --}}
                 <div class="kanban-body">
                     @forelse($proses as $item)
                         <div class="complaint-card">
@@ -120,10 +112,8 @@
             </div>
 
 
-            {{-- SEDANG DITANGANI --}}
             <div class="kanban-column">
 
-                {{-- Header --}}
                 <div class="kanban-header ditangani">
                     <div>
                         <span class="status-icon"><i class="fa-solid fa-gears"></i></span>
@@ -135,7 +125,6 @@
                     <span class="status-count">{{ $sedangDitanganiTotal }}</span>
                 </div>
 
-                {{-- Body --}}
                 <div class="kanban-body">
                     @forelse($sedangDitangani as $item)
                         <div class="complaint-card">
@@ -167,10 +156,8 @@
             </div>
 
 
-            {{-- SELESAI --}}
             <div class="kanban-column">
 
-                {{-- Header --}}
                 <div class="kanban-header selesai">
                     <div>
                         <span class="status-icon">✓</span>
@@ -182,7 +169,6 @@
                     <span class="status-count">{{ $selesaiTotal }}</span>
                 </div>
 
-                {{-- Body --}}
                 <div class="kanban-body">
                     @forelse($selesai as $item)
                         <div class="complaint-card">
@@ -214,7 +200,6 @@
             </div>
 
         </div>
-        {{-- End Kanban --}}
 
     </div>
 </section>

@@ -17,29 +17,21 @@
 
     <!-- Info user -->
     <div class="grid grid-cols-12 gap-x-6 mt-5" id="welcome-card-wrapper">
-
         <div class="col-span-12">
             <div class="card">
-
                 <div class="card-body">
-
                     <div class="flex items-center">
 
-                        <!-- Icon -->
                         <div class="shrink-0">
                             <div class="w-12 h-12 rounded-xl inline-flex items-center justify-center bg-primary-500/10 text-primary-500">
                                 <i class="ti ti-user text-2xl"></i>
                             </div>
                         </div>
 
-
-                        <!-- User Information -->
                         <div class="grow ltr:ml-4 rtl:mr-4">
-
                             <h5 class="mb-1">
                                 Selamat datang, {{ auth()->user()->name }}
                             </h5>
-
                             <p class="text-muted mb-0">
                                 Anda login sebagai
                                 <strong>
@@ -50,13 +42,9 @@
                                     @endif
                                 </strong>.
                             </p>
-
                         </div>
 
-
-                        <!-- Close Button -->
                         <div class="shrink-0 self-start">
-
                             <button
                                 type="button"
                                 id="close-welcome-card"
@@ -66,16 +54,12 @@
                             >
                                 <i class="ti ti-x text-lg leading-none"></i>
                             </button>
-
                         </div>
 
                     </div>
-
                 </div>
-
             </div>
         </div>
-
     </div>
 
     <!-- Statistik utamam -->

@@ -609,34 +609,57 @@
 
 <!-- Print Style -->
 <style>
-
     @media print {
-
         .pc-header,
         .pc-sidebar,
         .pc-footer,
-        .page-header button,
-        .card:first-of-type {
+        .btn,
+        .page-header,
+        .card-header .d-flex button {
             display: none !important;
         }
-
-        .pc-container,
-        .pc-content {
+        html, body, .pc-container, .pc-content, .container, .container-fluid {
+            width: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
-        }
-
-        .card {
-            box-shadow: none !important;
-            border: 1px solid #ddd !important;
-        }
-
-        body {
             background: #fff !important;
+            color: #000 !important;
         }
-
+        .row > [class*="col-"] {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 0 !important;
+        }
+        .card {
+            width: 100% !important;
+            box-shadow: none !important;
+            border: none !important;
+            margin-bottom: 20px !important;
+            break-inside: avoid;
+        }
+        .card-body {
+            padding: 0 !important;
+        }
+        .table-responsive {
+            overflow: visible !important;
+            width: 100% !important;
+        }
+        table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+        }
+        th, td {
+            padding: 8px !important;
+            border-bottom: 1px solid #ddd !important;
+        }
+        form {
+            display: none !important;
+        }
+        .card:has(.table), .card:has(.ti-history) {
+            display: block !important;
+        }
     }
-
 </style>
 
 @endsection

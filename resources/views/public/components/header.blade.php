@@ -39,6 +39,21 @@
             </ul>
 
             <div class="mobile-menu-actions">
+                <a href="{{ route('home') }}#cara-kerja" style="width: 100%; text-align: center; text-decoration: none;">
+                    Cara Kerja
+                </a>
+                <a href="{{ route('home') }}#kategori" style="width: 100%; text-align: center; text-decoration: none;">
+                    Jenis Pengaduan
+                </a>
+                <a href="{{ route('home') }}#privasi" style="width: 100%; text-align: center; text-decoration: none;">
+                    Privasi &amp; Keamanan
+                </a>
+                <a href="{{ route('home') }}#faq" style="width: 100%; text-align: center; text-decoration: none;">
+                    Pertanyaan Umum
+                </a>
+                <a href="{{ route('pengaduan.antrian') }}" style="width: 100%; text-align: center; text-decoration: none;">
+                    Lacak Status Pengaduan
+                </a>
                 <a href="{{ route('login') }}" class="btn btn-ghost" style="width: 100%; text-align: center;">
                     Masuk
                 </a>

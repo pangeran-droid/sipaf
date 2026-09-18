@@ -127,23 +127,32 @@
 
 
                 <!-- Action -->
-                <div class="col-md-2 d-flex align-items-end gap-2">
+                <div class="col-12">
 
-                    <button
-                        type="submit"
-                        class="btn btn-primary flex-fill">
-                        <i class="ti ti-filter me-1"></i>
-                        Filter
-                    </button>
+                    <div class="d-flex justify-content-end gap-2 mt-2">
 
-                    <a
-                        href="{{ route('admin.pengaduan.index') }}"
-                        class="btn btn-light"
-                        title="Reset Filter">
-                        <i class="ti ti-refresh"></i>
-                    </a>
+                        <a
+                            href="{{ route('admin.pengaduan.index') }}"
+                            class="btn btn-light-secondary">
+
+                            <i class="ti ti-refresh me-1"></i>
+                            Reset
+
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+
+                            <i class="ti ti-filter me-1"></i>
+                            Terapkan Filter
+
+                        </button>
+
+                    </div>
 
                 </div>
+
 
             </div>
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('jurusan_id')->constrained('jurusans')->onDelete('restrict');
             $table->string('nama_dosen');
             $table->text('isi_pengaduan');
+            $table->string('lampiran')->nullable();
             $table->enum('status', ['Proses', 'Sedang Ditangani', 'Selesai'])->default('Proses');
             $table->timestamps();
         });

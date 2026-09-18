@@ -12,6 +12,7 @@ class Pengaduan extends Model
         'jurusan_id',
         'nama_dosen',
         'isi_pengaduan',
+        'lampiran',
         'status',
     ];
 

@@ -31,5 +31,26 @@
 
         @yield('scripts')
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const navToggle = document.getElementById('navToggle');
+                const siteNav = document.getElementById('siteNav');
+
+                if (navToggle && siteNav) {
+                    navToggle.addEventListener('click', function () {
+                        siteNav.classList.toggle('is-open');
+                        navToggle.classList.toggle('is-active');
+                    });
+
+                    siteNav.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            siteNav.classList.remove('is-open');
+                            navToggle.classList.remove('is-active');
+                        });
+                    });
+                }
+            });
+        </script>
+
     </body>
 </html>

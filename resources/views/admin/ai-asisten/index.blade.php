@@ -419,18 +419,27 @@
                     w-8
                     h-8
                     rounded-full
-                    bg-primary-500
-                    text-white
-                    flex
-                    items-center
-                    justify-center
-                    text-xs
-                    font-bold
+                    overflow-hidden
                     shrink-0
                     shadow-sm
                 `;
 
-                avatarDiv.textContent = 'AD';
+                const img =
+                    document.createElement('img');
+
+
+                img.src =
+                    "{{ asset('templates/backend/images/user/avatar-1.jpg') }}";
+
+                img.className = `
+                    w-full
+                    h-full
+                    object-cover
+                `;
+
+                img.alt = 'AD';
+
+                avatarDiv.appendChild(img);
             }
 
             const messageWrapper =

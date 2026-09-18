@@ -18,6 +18,7 @@ class StorePengaduanRequest extends FormRequest
             'jurusan_id' => ['required', 'exists:jurusans,id'],
             'nama_dosen' => ['required', 'string', 'max:255'],
             'isi_pengaduan' => ['required', 'string', 'min:10', 'max:2000'],
+            'lampiran' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
         ];
     }
 

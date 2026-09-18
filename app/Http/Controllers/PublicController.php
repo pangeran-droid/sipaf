@@ -17,7 +17,8 @@ class PublicController extends Controller
         $title = 'Home';
 
         $tahunIni = Carbon::now()->year;
-        return view('public.beranda', compact('title', 'tahunIni'));
+        $selesaiTotal = Pengaduan::where('status', 'Selesai')->count();
+        return view('public.beranda', compact('title', 'tahunIni', 'selesaiTotal'));
     }
 
     public function createPengaduan()
@@ -45,12 +46,18 @@ class PublicController extends Controller
 
             $kodePengaduan = "ADU-{$tanggal}-{$nextNumber}";
 
+            $lampiranPath = null;
+            if ($request->hasFile('lampiran')) {
+                $lampiranPath = $request->file('lampiran')->store('assets/lampiran-pengaduan', 'public');
+            }
+
             $pengaduan = Pengaduan::create([
                 'kode_pengaduan' => $kodePengaduan,
                 'nama_pengadu' => $request->nama_pengadu,
                 'jurusan_id' => $request->jurusan_id,
                 'nama_dosen' => $request->nama_dosen,
                 'isi_pengaduan' => $request->isi_pengaduan,
+                'lampiran' => $lampiranPath,
                 'status' => 'Proses',
             ]);
 
