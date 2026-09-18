@@ -25,14 +25,11 @@
                         </p>
                     </div>
 
-                    <!-- Email Address -->
                     <form method="POST" action="{{ route('password.store') }}">
                         @csrf
 
-                        <!-- Password Reset Token -->
                         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                        <!-- Email Address -->
                         <div class="mb-3">
                             <label for="email" class="form-label">
                                 Email
@@ -56,7 +53,6 @@
                             @enderror
                         </div>
 
-                        <!-- Password -->
                         <div class="mb-3">
                             <label for="password" class="form-label">
                                 Password Baru
@@ -78,7 +74,6 @@
                             @enderror
                         </div>
 
-                        <!-- Confirm Password -->
                         <div class="mb-4">
                             <label for="password_confirmation" class="form-label">
                                 Konfirmasi Password
@@ -100,7 +95,6 @@
                             @enderror
                         </div>
 
-                        <!-- Button -->
                         <div class="mt-4">
                             <button
                                 type="submit"
@@ -110,7 +104,6 @@
                         </div>
                     </form>
 
-                    <!-- Back Login -->
                     <div class="text-center mt-4">
                         <a
                             href="{{ route('login') }}"

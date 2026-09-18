@@ -84,6 +84,14 @@
                             </div>
                         @endif
 
+                        @if(isset($totalNotifikasi) && $totalNotifikasi > 3)
+                            <div class="more-complaints text-center py-2">
+                                <span class="text-xs font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                                    +{{ $totalNotifikasi - 3 }} pengaduan lainnya
+                                </span>
+                            </div>
+                        @endif
+
                     </div>
 
                     <div class="text-center py-2 border-t border-gray-100 mt-2">

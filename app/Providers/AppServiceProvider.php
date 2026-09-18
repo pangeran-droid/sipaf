@@ -34,8 +34,8 @@ class AppServiceProvider extends ServiceProvider
                     $query->where('jurusan_id', $user->jurusan_id);
                 }
 
-                $notifikasiPengaduan = $query->take(5)->get();
                 $totalNotifikasi = $query->count();
+                $notifikasiPengaduan = $query->take(3)->get();
             }
 
             $view->with([

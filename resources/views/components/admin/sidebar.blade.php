@@ -66,7 +66,7 @@
             <a href="{{ route('admin.ai-asisten.index') }}" class="pc-link">
               <span class="pc-micon">
                 <svg class="pc-icon">
-                  <use xlink:href="#custom-mouse-circle"></use>
+                  <use xlink:href="#custom-message-2"></use>
                 </svg>
               </span>
               <span class="pc-mtext">Ai Asisten</span>
@@ -92,7 +92,7 @@
             <li class="pc-item">
                 <a href="{{ route('admin.manajemen-admin.index') }}" class="pc-link"><span class="pc-micon">
                     <svg class="pc-icon">
-                    <use xlink:href="#custom-user"></use>
+                    <use xlink:href="#custom-user-square"></use>
                     </svg> </span><span class="pc-mtext">Admin</span></a>
             </li>
           @endif

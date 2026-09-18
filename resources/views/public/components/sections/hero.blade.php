@@ -2,7 +2,7 @@
     <div class="wrap hero-grid">
         <div>
             <div class="hero-eyebrow">
-                sipaf.ft.ac.id — kanal resmi fakultas
+                sipaf-dev.ft.ac.id — kanal resmi fakultas
             </div>
             <h1>
                 Setiap keluhan akademik berhak mendapat jawaban yang jelas.

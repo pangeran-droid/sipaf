@@ -7,11 +7,17 @@
 <div class="auth-main relative">
     <div class="auth-wrapper v1 flex items-center w-full h-full min-h-screen">
         <div class="auth-form flex items-center justify-center grow flex-col min-h-screen bg-cover relative p-6 bg-[url('../images/authentication/img-auth-bg.jpg')] dark:bg-none dark:bg-themedark-bodybg">
-
             <div class="card sm:my-12 w-full max-w-[480px] shadow-none">
                 <div class="card-body !p-10">
-
                     <div class="text-center mb-5">
+                        <div class="text-center">
+                            <a href="{{ route('home') }}"><img src="{{ asset('templates/backend/images/logo-dark.svg') }}" alt="img" class="mx-auto"/></a>
+                            <div class="grid my-4">
+                                {{-- <button type="button" class="btn mt-2 flex items-center justify-center gap-2 text-theme-bodycolor dark:text-themedark-bodycolor bg-theme-bodybg dark:bg-themedark-bodybg border border-theme-border dark:border-themedark-border hover:border-primary-500 dark:hover:border-primary-500">
+                                    <img src="{{ asset('templates/backend/images/authentication/google.svg') }}" alt="img" /> <span> Sign In with Google</span>
+                                </button> --}}
+                            </div>
+                        </div>
                         <h4 class="font-medium mb-2">Lupa Kata Sandi?</h4>
 
                         <p class="text-muted">
@@ -19,7 +25,6 @@
                         </p>
                     </div>
 
-                    <!-- Session Status -->
                     @if (session('status'))
                         <div class="alert alert-success mb-4">
                             {{ session('status') }}
@@ -29,7 +34,6 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
-                        <!-- Email -->
                         <div class="mb-4">
                             <label for="email" class="form-label">
                                 Alamat Email
@@ -44,7 +48,6 @@
                             @enderror
                         </div>
 
-                        <!-- Button -->
                         <div class="mt-4">
                             <button
                                 type="submit"
@@ -53,7 +56,6 @@
                             </button>
                         </div>
 
-                        <!-- Back Login -->
                         <div class="text-center mt-4">
                             <a
                                 href="{{ route('login') }}"
@@ -61,12 +63,9 @@
                                 Kembali ke Login
                             </a>
                         </div>
-
                     </form>
-
                 </div>
             </div>
-
         </div>
     </div>
 </div>

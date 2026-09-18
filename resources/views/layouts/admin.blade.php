@@ -21,20 +21,17 @@
 
 <body>
 
-    <!-- Loader -->
-    <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
-        <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0 bg-primary-500/40">
-            <div class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0"></div>
-        </div>
+<!-- Loader -->
+<div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
+    <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0 bg-primary-500/40">
+        <div class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0"></div>
     </div>
+</div>
 
-    <!-- Sidebar -->
     @include('components.admin.sidebar')
 
-    <!-- Header -->
     @include('components.admin.header')
 
-    <!-- Content -->
     <div class="pc-container">
         <div class="pc-content">
 
@@ -43,88 +40,86 @@
         </div>
     </div>
 
-    <!-- Footer -->
     @include('components.admin.footer')
 
 
-    <!-- Global JS -->
-    <script src="{{ asset('templates/backend/js/plugins/simplebar.min.js') }}"></script>
-    <script src="{{ asset('templates/backend/js/plugins/popper.min.js') }}"></script>
-    <script src="{{ asset('templates/backend/js/icon/custom-font.js') }}"></script>
-    <script src="{{ asset('templates/backend/js/plugins/feather.min.js') }}"></script>
-    <script src="{{ asset('templates/backend/js/component.js') }}"></script>
-    <script src="{{ asset('templates/backend/js/theme.js') }}"></script>
-    <script src="{{ asset('templates/backend/js/script.js') }}"></script>
+<script src="{{ asset('templates/backend/js/plugins/simplebar.min.js') }}"></script>
+<script src="{{ asset('templates/backend/js/plugins/popper.min.js') }}"></script>
+<script src="{{ asset('templates/backend/js/icon/custom-font.js') }}"></script>
+<script src="{{ asset('templates/backend/js/plugins/feather.min.js') }}"></script>
+<script src="{{ asset('templates/backend/js/component.js') }}"></script>
+<script src="{{ asset('templates/backend/js/theme.js') }}"></script>
+<script src="{{ asset('templates/backend/js/script.js') }}"></script>
 
-    <script>
-        layout_change('false');
-        layout_theme_contrast_change('false');
-        change_box_container('false');
-        layout_caption_change('true');
-        layout_rtl_change('false');
-        preset_change('preset-1');
-        main_layout_change('vertical');
-    </script>
+<script>
+    layout_change('false');
+    layout_theme_contrast_change('false');
+    change_box_container('false');
+    layout_caption_change('true');
+    layout_rtl_change('false');
+    preset_change('preset-1');
+    main_layout_change('vertical');
+</script>
 
-    @stack('scripts')
+@stack('scripts')
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
 
-            const toggle = document.getElementById('notificationToggle');
-            const content = document.getElementById('notificationContent');
-            const badge = document.getElementById('notificationBadge');
+        const toggle = document.getElementById('notificationToggle');
+        const content = document.getElementById('notificationContent');
+        const badge = document.getElementById('notificationBadge');
 
-            if (!toggle) {
-                return;
-            }
+        if (!toggle) {
+            return;
+        }
 
-            const savedStatus = localStorage.getItem('notification_enabled');
+        const savedStatus = localStorage.getItem('notification_enabled');
 
-            if (savedStatus === null) {
-                toggle.checked = true;
-            } else {
-                toggle.checked = savedStatus === 'true';
-            }
+        if (savedStatus === null) {
+            toggle.checked = true;
+        } else {
+            toggle.checked = savedStatus === 'true';
+        }
+
+        updateNotification();
+
+        toggle.addEventListener('change', function () {
+
+            localStorage.setItem(
+                'notification_enabled',
+                this.checked ? 'true' : 'false'
+            );
 
             updateNotification();
+        });
 
-            toggle.addEventListener('change', function () {
+        function updateNotification() {
 
-                localStorage.setItem(
-                    'notification_enabled',
-                    this.checked ? 'true' : 'false'
-                );
+            if (toggle.checked) {
 
-                updateNotification();
-            });
+                if (content) {
+                    content.style.display = '';
+                }
 
-            function updateNotification() {
+                if (badge) {
+                    badge.style.display = '';
+                }
 
-                if (toggle.checked) {
+            } else {
 
-                    if (content) {
-                        content.style.display = '';
-                    }
+                if (content) {
+                    content.style.display = 'none';
+                }
 
-                    if (badge) {
-                        badge.style.display = '';
-                    }
-
-                } else {
-
-                    if (content) {
-                        content.style.display = 'none';
-                    }
-
-                    if (badge) {
-                        badge.style.display = 'none';
-                    }
+                if (badge) {
+                    badge.style.display = 'none';
                 }
             }
+        }
 
-        });
-    </script>
+    });
+</script>
 
 </body>
 </html>
