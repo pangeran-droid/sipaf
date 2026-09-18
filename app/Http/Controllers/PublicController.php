@@ -16,12 +16,13 @@ class PublicController extends Controller
     {
         $title = 'Home';
 
-        return view('public.beranda', compact('title'));
+        $tahunIni = Carbon::now()->year;
+        return view('public.beranda', compact('title', 'tahunIni'));
     }
 
     public function createPengaduan()
     {
-        $title = 'Buat Pengaduan';
+        $title = 'Ajukan Pengaduan';
 
         $jurusans = Jurusan::all();
         return view('public.buat-pengaduan', compact('jurusans', 'title'));
@@ -74,7 +75,7 @@ class PublicController extends Controller
 
 public function antrian(Request $request)
 {
-    $title = 'Ajukan Pengaduan';
+    $title = 'Lacak Pengaduan';
 
     $query = Pengaduan::with('jurusan');
 

@@ -1,30 +1,54 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr" data-pc-theme="light">
 
-        <title>{{ isset($title) ? $title . ' - ' : '' }}{{ config('app.name') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title> @yield('title', 'Login') </title>
+    <link rel="icon" href="{{ asset('templates/backend/images/favicon.svg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('templates/backend/fonts/inter/inter.css') }}">
+    <link rel="stylesheet" href="{{ asset('templates/backend/fonts/phosphor/duotone/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('templates/backend/fonts/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('templates/backend/fonts/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('templates/backend/fonts/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('templates/backend/fonts/material.css') }}">
+    <link rel="stylesheet" href="{{ asset('templates/backend/css/style.css') }}">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    @stack('styles')
+</head>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+<body>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
+    <!-- Loader -->
+    <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
+        <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0 bg-primary-500/40">
+            <div class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0"></div>
         </div>
-    </body>
+    </div>
+
+    @yield('content')
+
+    <!-- Global JS -->
+    <script src="{{ asset('templates/backend/js/plugins/simplebar.min.js') }}"></script>
+    <script src="{{ asset('templates/backend/js/plugins/popper.min.js') }}"></script>
+    <script src="{{ asset('templates/backend/js/icon/custom-font.js') }}"></script>
+    <script src="{{ asset('templates/backend/js/plugins/feather.min.js') }}"></script>
+    <script src="{{ asset('templates/backend/js/component.js') }}"></script>
+    <script src="{{ asset('templates/backend/js/theme.js') }}"></script>
+    <script src="{{ asset('templates/backend/js/script.js') }}"></script>
+
+    <script>
+        layout_change('false');
+        layout_theme_contrast_change('false');
+        change_box_container('false');
+        layout_caption_change('true');
+        layout_rtl_change('false');
+        preset_change('preset-1');
+        main_layout_change('vertical');
+    </script>
+
+    @stack('scripts')
+
+</body>
 </html>

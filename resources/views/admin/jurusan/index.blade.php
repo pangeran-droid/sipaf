@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['title' => 'Kelola Jurusan - SIPAF Admin'])
+@extends('layouts.admin')
 
 @section('content')
 

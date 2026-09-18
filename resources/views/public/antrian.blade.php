@@ -100,7 +100,7 @@
                                 {{ $item->jurusan->nama_jurusan }}
                             </h5>
                             <div class="complaint-info">
-                                <div><strong style="color: var(--ink-faint);">Dosen:</strong> {{ $item->nama_dosen }}</div>
+                                {{-- <div><strong style="color: var(--ink-faint);">Dosen:</strong> {{ $item->nama_dosen }}</div> --}}
                                 <div><strong style="color: var(--ink-faint);">Tanggal:</strong> {{ $item->created_at->format('d M Y') }}</div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                                 {{ $item->jurusan->nama_jurusan }}
                             </h5>
                             <div class="complaint-info">
-                                <div><strong style="color: var(--ink-faint);">Dosen:</strong> {{ $item->nama_dosen }}</div>
+                                {{-- <div><strong style="color: var(--ink-faint);">Dosen:</strong> {{ $item->nama_dosen }}</div> --}}
                                 <div><strong style="color: var(--ink-faint);">Tanggal:</strong> {{ $item->created_at->format('d M Y') }}</div>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
                                 {{ $item->jurusan->nama_jurusan }}
                             </h5>
                             <div class="complaint-info">
-                                <div><strong style="color: var(--ink-faint);">Dosen:</strong> {{ $item->nama_dosen }}</div>
+                                {{-- <div><strong style="color: var(--ink-faint);">Dosen:</strong> {{ $item->nama_dosen }}</div> --}}
                                 <div><strong style="color: var(--ink-faint);">Tanggal:</strong> {{ $item->created_at->format('d M Y') }}</div>
                             </div>
                         </div>

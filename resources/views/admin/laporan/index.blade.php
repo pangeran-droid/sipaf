@@ -61,36 +61,148 @@
 </div>
 
 <!-- Statistik Ringkas Laporan -->
-<div class="row g-4 mb-4">
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm bg-light">
+<div class="grid grid-cols-12 gap-x-6">
+
+    <!-- Total Laporan -->
+    <div class="col-span-12 md:col-span-6 2xl:col-span-3">
+        <div class="card">
             <div class="card-body">
-                <h6 class="text-muted text-uppercase fw-semibold mb-1">Total Laporan</h6>
-                <h3 class="fw-bold mb-0 text-primary">{{ $totalLaporan }}</h3>
+                <div class="flex items-center">
+
+                    <div class="shrink-0">
+                        <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-primary-500/10 text-primary-500">
+                            <i class="ti ti-message-report text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="grow ltr:ml-3 rtl:mr-3">
+                        <h6 class="mb-1">Total Laporan</h6>
+                        <h4 class="mb-0">{{ number_format($totalLaporan) }}</h4>
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-muted mb-0">
+                        <i class="ti ti-chart-bar"></i>
+                        Seluruh laporan
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm bg-light">
+
+    <!-- Proses -->
+    <div class="col-span-12 md:col-span-6 2xl:col-span-3">
+        <div class="card">
             <div class="card-body">
-                <h6 class="text-muted text-uppercase fw-semibold mb-1">Proses</h6>
-                <h3 class="fw-bold mb-0 text-info">{{ $totalProses }}</h3>
+                <div class="flex items-center">
+
+                    <div class="shrink-0">
+                        <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-warning-500/10 text-warning-500">
+                            <i class="ti ti-clock text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="grow ltr:ml-3 rtl:mr-3">
+                        <h6 class="mb-1">Proses</h6>
+                        <h4 class="mb-0">{{ number_format($totalProses) }}</h4>
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-warning-500 mb-0">
+                        <i class="ti ti-loader"></i>
+                        Sedang diproses
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm bg-light">
+
+    <!-- Sedang Ditangani -->
+    <div class="col-span-12 md:col-span-6 2xl:col-span-3">
+        <div class="card">
             <div class="card-body">
-                <h6 class="text-muted text-uppercase fw-semibold mb-1">Sedang Ditangani</h6>
-                <h3 class="fw-bold mb-0 text-warning">{{ $totalDitangani }}</h3>
+                <div class="flex items-center">
+
+                    <div class="shrink-0">
+                        <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-info-500/10 text-info-500">
+                            <i class="ti ti-user-search text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="grow ltr:ml-3 rtl:mr-3">
+                        <h6 class="mb-1">Sedang Ditangani</h6>
+                        <h4 class="mb-0">{{ number_format($totalDitangani) }}</h4>
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-info-500 mb-0">
+                        <i class="ti ti-progress"></i>
+                        Dalam penanganan
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm bg-light">
+
+    <!-- Selesai -->
+    <div class="col-span-12 md:col-span-6 2xl:col-span-3">
+        <div class="card">
             <div class="card-body">
-                <h6 class="text-muted text-uppercase fw-semibold mb-1">Selesai</h6>
-                <h3 class="fw-bold mb-0 text-success">{{ $totalSelesai }}</h3>
+                <div class="flex items-center">
+
+                    <div class="shrink-0">
+                        <div class="w-10 h-10 rounded-xl inline-flex items-center justify-center bg-success-500/10 text-success-500">
+                            <i class="ti ti-circle-check text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="grow ltr:ml-3 rtl:mr-3">
+                        <h6 class="mb-1">Selesai</h6>
+                        <h4 class="mb-0">{{ number_format($totalSelesai) }}</h4>
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-success-500 mb-0">
+                        <i class="ti ti-check"></i>
+                        Pengaduan terselesaikan
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Grafik pengaduan bulanan -->
+<div class="grid grid-cols-12 gap-x-6 mt-5" id="pengaduan-bulanan-chart">
+    <div class="col-span-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="flex items-center">
+
+                    <!-- Information -->
+                    <div class="grow ltr:ml-4 rtl:mr-4">
+
+                        <h5 class="mb-1">
+                            Pengaduan Bulanan
+                        </h5>
+
+                        <p class="text-muted mb-0">
+                            <strong>
+                                Statistik pengaduan tahun {{ $tahunIni }}
+                            </strong>.
+                        </p>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

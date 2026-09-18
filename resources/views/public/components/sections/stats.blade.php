@@ -2,10 +2,10 @@
     <div class="wrap stats-row">
         <div class="stat">
             <div class="num">
-                1.240
+                {{ number_format($selesai) }}
             </div>
             <div class="desc">
-                Pengaduan diselesaikan sepanjang tahun akademik 2025/2026
+                Pengaduan diselesaikan sepanjang tahun akademik {{ $tahunIni }}/2027
             </div>
         </div>
         <div class="stat">
